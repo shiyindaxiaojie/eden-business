@@ -1,0 +1,15 @@
+@startuml
+
+[eden-aliyun-spring-boot-starters] --> [eden-solution]
+[eden-oss-spring-boot-starter] --> [eden-aliyun-spring-boot-starters]
+[eden-oss-spring-boot-starter] --> [eden-aliyun-spring-boot-starters]
+[eden-oss-spring-boot-starter] --> [eden-aliyun-spring-boot-starters]
+[eden-oss-spring-boot-starter] --> [eden-aliyun-spring-boot-starters]
+[eden-oss-spring-boot-starter] --> [eden-aliyun-spring-boot-starters]
+[eden-qcloud-spring-boot-starters] --> [eden-solution]
+[eden-cmq-spring-boot-starter] --> [eden-qcloud-spring-boot-starters]
+[eden-cos-spring-boot-starter] --> [eden-qcloud-spring-boot-starters]
+[eden-tms-spring-boot-starter] --> [eden-qcloud-spring-boot-starters]
+[eden-tpns-spring-boot-starter] --> [eden-qcloud-spring-boot-starters]
+[eden-vod-spring-boot-starter] --> [eden-qcloud-spring-boot-starters]
+@enduml
