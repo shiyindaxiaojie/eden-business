@@ -12,7 +12,7 @@ import org.ylzl.eden.spring.boot.cos.env.COSProperties;
 /**
  * 腾讯云COS 自动配置
  *
- * @author gyl
+ * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
  * @since 2.4.x
  */
 @ConditionalOnExpression("${qcloud.cos.enabled:false}")

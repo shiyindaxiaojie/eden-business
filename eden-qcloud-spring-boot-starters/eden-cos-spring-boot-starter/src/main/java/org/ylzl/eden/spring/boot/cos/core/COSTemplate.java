@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * 腾讯云COS 操作模板
  *
- * @author gyl
+ * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
  * @link https://cloud.tencent.com/document/product/436/10199
  * @since 2021-12-23
  */
