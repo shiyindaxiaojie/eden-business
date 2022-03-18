@@ -17,7 +17,7 @@ import java.util.Random;
 /**
  * 腾讯云VOD 操作模板
  *
- * @author gyl
+ * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
  * @link https://cloud.tencent.com/document/product/266/10276
  * @since 2021-06-17
  */
