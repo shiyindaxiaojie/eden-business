@@ -10,11 +10,11 @@
 		<version>2.4.13-SNAPSHOT</version>
 		<relativePath/>
 	</parent>
-	<artifactId>eden-solution</artifactId>
+	<artifactId>eden-business</artifactId>
 	<version>2.4.13-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>eden-solution</name>
-	<description>企业应用解决方案</description>
+	<name>eden-business</name>
+	<description>商业组件</description>
 
 	<modules>
 		<module>eden-aliyun-spring-boot-starters</module>
