@@ -18,6 +18,8 @@
 
 	<modules>
 		<module>eden-aliyun-spring-boot-starters</module>
+		<module>eden-emay-spring-boot-starters</module>
+		<module>eden-montnets-spring-boot-starters</module>
 		<module>eden-qcloud-spring-boot-starters</module>
 	</modules>
 
