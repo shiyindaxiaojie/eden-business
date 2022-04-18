@@ -1,10 +1,12 @@
 <img src="https://cdn.jsdelivr.net/gh/eden-lab/eden-lab-images/readme/icon.png" align="right" />
 
 [license-apache2.0]:https://www.apache.org/licenses/LICENSE-2.0.html
+
 [github-action]:https://github.com/eden-lab/eden-solution/actions
+
 [sonarcloud-dashboard]:https://sonarcloud.io/dashboard?id=eden-lab_eden-solution
 
-# Eden* Architect 
+# Eden* Architect
 
 ![](https://cdn.jsdelivr.net/gh/eden-lab/eden-lab-images/readme/language-java-blue.svg) [![](https://cdn.jsdelivr.net/gh/eden-lab/eden-lab-images/readme/license-apache2.0-red.svg)][license-apache2.0] [![](https://github.com/eden-lab/eden-solution/workflows/build/badge.svg)][github-action] [![](https://sonarcloud.io/api/project_badges/measure?project=eden-lab_eden-solution&metric=alert_status)][sonarcloud-dashboard]
 
@@ -14,7 +16,8 @@ Eden* Solution 致力于提供企业开发的一站式解决方案。此项目�
 
 ## 主要功能
 
-* **腾讯云组件集成**：提供了腾讯云产品常用的 `COS 对象存储`、`VOD 云点播`、`TMS 敏感词过滤`、`TPNS 推送`、`CMQ 消息队列`等组件的集成，引入相关 `Spring Boot Starter` 开启自动装配能力。
+* **腾讯云组件集成**：提供了腾讯云产品常用的 `COS 对象存储`、`VOD 云点播`、`TMS 敏感词过滤`、`TPNS 推送`、`CMQ 消息队列`等组件的集成，引入相关 `Spring Boot Starter`
+  开启自动装配能力。
 
 ## 组件构成
 
@@ -24,6 +27,7 @@ Eden* Solution 致力于提供企业开发的一站式解决方案。此项目�
 * **eden-aliyun-spring-boot-starters**: 阿里云集成
 
 ## 如何构建
+
 * master 分支对应的是 `Spring Boot 2.4.x`，最低支持 JDK 1.8。
 * 1.5.x 分支对应的是 `Spring Boot 1.5.x`，最低支持 JDK 1.8。
 * 2.4.x 分支对应的是 `Spring Boot 2.4.x`，最低支持 JDK 1.8。
