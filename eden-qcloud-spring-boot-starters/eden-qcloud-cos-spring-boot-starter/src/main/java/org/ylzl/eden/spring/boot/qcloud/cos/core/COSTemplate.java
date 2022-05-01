@@ -9,10 +9,10 @@ import com.qcloud.cos.region.Region;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.util.CollectionUtils;
+import org.ylzl.eden.commons.collections.CollectionUtils;
+import org.ylzl.eden.commons.lang.StringUtils;
 import org.ylzl.eden.spring.boot.qcloud.cos.config.COSConfig;
 
 import java.io.File;
@@ -40,7 +40,6 @@ public class COSTemplate implements InitializingBean, DisposableBean {
 
 	/**
 	 * 初始化 COSClient
-	 * <p>
 	 * <br/>COSClient 是线程安全的类，允许多线程访问同一实例，内部维持了一个连接池，
 	 * 请确保程序生命周期内实例只有一个，并在不再需要使用时，调用 shutdown 方法将其关闭
 	 */
@@ -66,14 +65,26 @@ public class COSTemplate implements InitializingBean, DisposableBean {
 	 * 创建存储桶
 	 *
 	 * @param bucketName 存储桶名称
+	 * @param cannedAccessControlList 访问权限
+	 * @return
+	 */
+	public Bucket createBucket(String bucketName, CannedAccessControlList cannedAccessControlList) {
+		CreateBucketRequest createBucketRequest = new CreateBucketRequest(bucketName);
+		// bucket 的权限有 Private(私有读写)、PublicRead（公有读私有写）、PublicReadWrite（公有读写）
+		createBucketRequest.setCannedAcl(cannedAccessControlList);
+		return cosClient.createBucket(createBucketRequest);
+	}
+
+	/**
+	 * 创建存储桶
+	 *
+	 * @param bucketName 存储桶名称
 	 * @return
 	 */
 	public Bucket createBucket(String bucketName) {
-		CreateBucketRequest createBucketRequest = new CreateBucketRequest(bucketName);
-		// bucket 的权限有 Private(私有读写)、PublicRead（公有读私有写）、PublicReadWrite（公有读写）
-		createBucketRequest.setCannedAcl(CannedAccessControlList.PublicRead);
-		return cosClient.createBucket(createBucketRequest);
+		return createBucket(bucketName, CannedAccessControlList.Private);
 	}
+
 
 	/**
 	 * 如果存储桶不存在创建

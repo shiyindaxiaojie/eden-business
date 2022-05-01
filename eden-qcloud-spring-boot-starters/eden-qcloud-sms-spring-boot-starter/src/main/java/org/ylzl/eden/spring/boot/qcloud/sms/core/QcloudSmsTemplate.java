@@ -9,7 +9,6 @@ import org.springframework.beans.factory.InitializingBean;
 import org.ylzl.eden.spring.boot.qcloud.sms.config.QcloudSmsConfig;
 import org.ylzl.eden.spring.framework.error.ClientErrorType;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
-import org.ylzl.eden.spring.integration.sms.common.SmsPlatform;
 import org.ylzl.eden.spring.integration.sms.core.*;
 
 import java.util.Collection;
@@ -18,7 +17,7 @@ import java.util.Map;
 /**
  * 腾讯云短信操作模板
  *
- * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
+ * @author <a href="mailto:guoyuanlu@puyiwm.com">gyl</a>
  * @since 2.4.x
  */
 @RequiredArgsConstructor
@@ -36,14 +35,6 @@ public class QcloudSmsTemplate implements SmsTemplate, InitializingBean {
 	}
 
 	/**
-	 * 短信平台
-	 */
-	@Override
-	public String getSmsPlatform() {
-		return SmsPlatform.QCLOUD;
-	}
-
-	/**
 	 * 模板发送
 	 *
 	 * @param request 发送短信请求
@@ -55,17 +46,14 @@ public class QcloudSmsTemplate implements SmsTemplate, InitializingBean {
 		com.tencentcloudapi.sms.v20210111.models.SendSmsRequest sendSmsRequest =
 			new com.tencentcloudapi.sms.v20210111.models.SendSmsRequest();
 
-		SendTemplateSmsRequest.TemplateSms templateSms = request.getTemplateSms();
-		ClientErrorType.notNull(templateSms, "A0001", "发送腾讯云短信的模板对象不能为空");
-
-		Collection<String> phoneNumbers = templateSms.getPhoneNumbers();
-		ClientErrorType.notNull(phoneNumbers, "A0001", "发送腾讯云短信的接收号码不能为空");
+		Collection<String> phoneNumbers = request.getPhoneNumbers();
+		ClientErrorType.notNull(phoneNumbers,"A0001", "发送腾讯云短信的接收号码不能为空");
 		sendSmsRequest.setPhoneNumberSet(phoneNumbers.toArray(new String[0]));
 
-		Map<String, String> templateParam = templateSms.getTemplateParam();
-		ClientErrorType.notNull(templateParam, "A0001", "发送腾讯云短信的模板参数不能为空");
+		Map<String, String> templateParam = request.getTemplateParam();
+		ClientErrorType.notNull(templateParam,"A0001", "发送腾讯云短信的模板参数不能为空");
 		sendSmsRequest.setTemplateParamSet(templateParam.keySet().toArray(new String[0]));
-		sendSmsRequest.setTemplateId(templateSms.getTemplateCode());
+		sendSmsRequest.setTemplateId(request.getTemplateCode());
 
 		request.setSignName(request.getSignName());
 		sendSmsRequest.setSmsSdkAppId(qcloudSmsConfig.getSmsSdkAppId());
@@ -76,7 +64,7 @@ public class QcloudSmsTemplate implements SmsTemplate, InitializingBean {
 				.build();
 		} catch (TencentCloudSDKException e) {
 			log.error("发送腾讯云短信失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("C0001", e.getMessage());
+			throw new ThirdServiceException("C0501", e.getMessage());
 		}
 	}
 
@@ -88,7 +76,7 @@ public class QcloudSmsTemplate implements SmsTemplate, InitializingBean {
 	 * @return 发送短信响应
 	 */
 	@Override
-	public SendSingleSmsResponse singleSend(SendSingleSmsRequest request) {
+	public SingleSendSmsResponse singleSend(SingleSendSmsRequest request) {
 		throw new UnsupportedOperationException("腾讯云暂时不支持自定义内容发送");
 	}
 
@@ -99,7 +87,7 @@ public class QcloudSmsTemplate implements SmsTemplate, InitializingBean {
 	 * @return 发送短信响应
 	 */
 	@Override
-	public SendBatchSmsResponse batchSend(SendBatchSmsRequest request) {
+	public BatchSendSmsResponse batchSend(BatchSendSmsRequest request) {
 		throw new UnsupportedOperationException("腾讯云暂时不支持自定义内容发送");
 	}
 
@@ -110,7 +98,7 @@ public class QcloudSmsTemplate implements SmsTemplate, InitializingBean {
 	 * @return 发送短信响应
 	 */
 	@Override
-	public SendMultiSmsResponse multiSend(SendMultiSmsRequest request) {
+	public MultiSendSmsResponse multiSend(MultiSendSmsRequest request) {
 		throw new UnsupportedOperationException("腾讯云暂时不支持自定义内容发送");
 	}
 }

@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.ylzl.eden.spring.framework.error.ClientErrorType;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
-import org.ylzl.eden.spring.integration.sms.common.SmsPlatform;
 import org.ylzl.eden.spring.integration.sms.core.*;
 
 import java.util.Collection;
@@ -29,14 +28,6 @@ public class AliyunSmsTemplate implements SmsTemplate {
 	private final ISmsService smsService;
 
 	/**
-	 * 短信平台
-	 */
-	@Override
-	public String getSmsPlatform() {
-		return SmsPlatform.ALIYUN;
-	}
-
-	/**
 	 * 模板发送
 	 *
 	 * @param request 发送短信请求
@@ -48,17 +39,14 @@ public class AliyunSmsTemplate implements SmsTemplate {
 		com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest sendSmsRequest =
 			new com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest();
 
-		SendTemplateSmsRequest.TemplateSms templateSms = request.getTemplateSms();
-		ClientErrorType.notNull(templateSms, "A0001", "发送阿里云短信的模板对象不能为空");
-
-		Collection<String> phoneNumbers = templateSms.getPhoneNumbers();
-		ClientErrorType.notNull(phoneNumbers, "A0001", "发送阿里云短信的接收号码不能为空");
+		Collection<String> phoneNumbers = request.getPhoneNumbers();
+		ClientErrorType.notNull(phoneNumbers,"A0001", "发送阿里云短信的接收号码不能为空");
 		sendSmsRequest.setPhoneNumbers(StringUtils.collectionToCommaDelimitedString(phoneNumbers));
 
-		Map<String, String> templateParam = templateSms.getTemplateParam();
-		ClientErrorType.notNull(templateParam, "A0001", "发送阿里云短信的模板参数不能为空");
+		Map<String, String> templateParam = request.getTemplateParam();
+		ClientErrorType.notNull(templateParam,"A0001", "发送阿里云短信的模板参数不能为空");
 		sendSmsRequest.setTemplateParam(JSONUtil.toJsonStr(templateParam));
-		sendSmsRequest.setTemplateCode(templateSms.getTemplateCode());
+		sendSmsRequest.setTemplateCode(request.getTemplateCode());
 
 		sendSmsRequest.setSignName(request.getSignName());
 		try {
@@ -71,7 +59,7 @@ public class AliyunSmsTemplate implements SmsTemplate {
 				.build();
 		} catch (ClientException e) {
 			log.error("发送阿里云短信失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("500", e.getMessage());
+			throw new ThirdServiceException("C0501", e.getMessage());
 		}
 	}
 
@@ -82,7 +70,7 @@ public class AliyunSmsTemplate implements SmsTemplate {
 	 * @return 发送短信响应
 	 */
 	@Override
-	public SendSingleSmsResponse singleSend(SendSingleSmsRequest request) {
+	public SingleSendSmsResponse singleSend(SingleSendSmsRequest request) {
 		throw new UnsupportedOperationException("阿里云暂时不支持自定义内容发送");
 	}
 
@@ -93,7 +81,7 @@ public class AliyunSmsTemplate implements SmsTemplate {
 	 * @return 发送短信响应
 	 */
 	@Override
-	public SendBatchSmsResponse batchSend(SendBatchSmsRequest request) {
+	public BatchSendSmsResponse batchSend(BatchSendSmsRequest request) {
 		throw new UnsupportedOperationException("阿里云暂时不支持自定义内容发送");
 	}
 
@@ -104,7 +92,7 @@ public class AliyunSmsTemplate implements SmsTemplate {
 	 * @return 发送短信响应
 	 */
 	@Override
-	public SendMultiSmsResponse multiSend(SendMultiSmsRequest request) {
+	public MultiSendSmsResponse multiSend(MultiSendSmsRequest request) {
 		throw new UnsupportedOperationException("阿里云暂时不支持自定义内容发送");
 	}
 }

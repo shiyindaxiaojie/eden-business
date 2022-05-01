@@ -9,21 +9,19 @@ import com.montnets.mwgate.smsutil.SmsSendConn;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
+import org.ylzl.eden.spring.boot.montnets.sms.env.MontnetsSmsProperties;
 import org.ylzl.eden.spring.framework.error.ClientErrorType;
-import org.ylzl.eden.spring.framework.error.ClientException;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
 import org.ylzl.eden.spring.framework.error.util.AssertEnhancer;
 import org.ylzl.eden.spring.integration.sms.core.*;
-import org.ylzl.eden.spring.boot.montnets.sms.constant.MontnetsPlatform;
-import org.ylzl.eden.spring.boot.montnets.sms.env.MontnetsSmsProperties;
 
 import java.util.Collection;
 import java.util.List;
 
 /**
- * 阿里云短信操作模板
+ * 梦网短信操作模板
  *
- * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
+ * @author <a href="mailto:guoyuanlu@puyiwm.com">gyl</a>
  * @since 2.4.x
  */
 @RequiredArgsConstructor
@@ -70,9 +68,9 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 		AssertEnhancer.notEmpty(montnetsSmsProperties.getAccountInfo(), "请求梦网的域名不能为空，请联系联系梦网客服进行获取。");
 		int size = montnetsSmsProperties.getAccountInfo().size();
 		String address1 = montnetsSmsProperties.getAccountInfo().get(0);
-		String address2 = size > 1 ? montnetsSmsProperties.getAccountInfo().get(1) : null;
-		String address3 = size > 2 ? montnetsSmsProperties.getAccountInfo().get(2) : null;
-		String address4 = size > 3 ? montnetsSmsProperties.getAccountInfo().get(3) : null;
+		String address2 = size > 1? montnetsSmsProperties.getAccountInfo().get(1) : null;
+		String address3 = size > 2? montnetsSmsProperties.getAccountInfo().get(2) : null;
+		String address4 = size > 3? montnetsSmsProperties.getAccountInfo().get(3) : null;
 		for (String accountInfo : montnetsSmsProperties.getAccountInfo()) {
 			String[] split = accountInfo.split("@@");
 			int result = ConfigManager.setAccountInfo(split[0], split[1], 1, address1, address2, address3, address4);
@@ -82,35 +80,27 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 	}
 
 	/**
-	 * 短信平台
-	 */
-	@Override
-	public String getSmsPlatform() {
-		return MontnetsPlatform.MONTNETS;
-	}
-
-	/**
 	 * 单条发送
 	 *
 	 * @param request 发送短信请求
 	 * @return 发送短信响应
 	 */
 	@Override
-	public SendSingleSmsResponse singleSend(SendSingleSmsRequest request) {
+	public SingleSendSmsResponse singleSend(SingleSendSmsRequest request) {
 		log.debug("发起梦网单条短信请求，参数：{}", request);
 		Message message = new Message();
-		message.setCustid(request.getCustomId());
+		message.setCustid(request.getCustomSmsId());
 		message.setMobile(request.getPhoneNumber());
 		message.setContent(request.getSmsContent());
 		StringBuffer returnValue = new StringBuffer();
 		try {
 			smsSendConn.batchSend(message, returnValue);
-			return SendSingleSmsResponse.builder()
+			return SingleSendSmsResponse.builder()
 				.success(true)
 				.build();
-		} catch (ClientException e) {
+		} catch (Exception e) {
 			log.error("发起梦网单条短信请求失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("500", e.getMessage());
+			throw new ThirdServiceException("C0501", e.getMessage());
 		}
 	}
 
@@ -121,21 +111,21 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 	 * @return 发送短信响应
 	 */
 	@Override
-	public SendBatchSmsResponse batchSend(SendBatchSmsRequest request) {
+	public BatchSendSmsResponse batchSend(BatchSendSmsRequest request) {
 		log.debug("发起梦网相同内容群发请求，参数：{}", request);
 		Message message = new Message();
-		message.setCustid(request.getCustomId());
+		message.setCustid(request.getCustomSmsId());
 		message.setMobile(String.join(",", request.getPhoneNumbers()));
 		message.setContent(request.getSmsContent());
 		StringBuffer returnValue = new StringBuffer();
 		try {
 			smsSendConn.batchSend(message, returnValue);
-			return SendBatchSmsResponse.builder()
+			return BatchSendSmsResponse.builder()
 				.success(true)
 				.build();
-		} catch (ClientException e) {
+		} catch (Exception e) {
 			log.error("发起梦网相同内容群发请求失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("500", e.getMessage());
+			throw new ThirdServiceException("C0501", e.getMessage());
 		}
 	}
 
@@ -146,17 +136,16 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 	 * @return 发送短信响应
 	 */
 	@Override
-	public SendMultiSmsResponse multiSend(SendMultiSmsRequest request) {
+	public MultiSendSmsResponse multiSend(MultiSendSmsRequest request) {
 		log.debug("发起梦网个性化内容群发请求，参数：{}", request);
-		Collection<SendMultiSmsRequest.MultiSms> multiSmsList = request.getMultiSmsList();
-		List<MultiMt> multixMts = Lists.newArrayListWithCapacity(multiSmsList.size());
-		for (SendMultiSmsRequest.MultiSms multiSms : multiSmsList) {
-			ClientErrorType.notNull(multiSms.getPhoneNumber(), "A0001",
-				"发送梦网短信的接收号码不能为空");
+		Collection<SendSms> sendSmsList = request.getSendSmsList();
+		List<MultiMt> multixMts = Lists.newArrayListWithCapacity(sendSmsList.size());
+		for (SendSms sendSms : sendSmsList) {
+			ClientErrorType.notNull(sendSms.getPhoneNumber(), "A0001", "发送梦网短信的接收号码不能为空");
 			MultiMt multixMt = new MultiMt();
-			multixMt.setMobile(multiSms.getPhoneNumber());
-			multixMt.setContent(multiSms.getSmsContent());
-			multixMt.setCustid(multiSms.getCustomId());
+			multixMt.setMobile(sendSms.getPhoneNumber());
+			multixMt.setContent(sendSms.getSmsContent());
+			multixMt.setCustid(sendSms.getCustomSmsId());
 			multixMts.add(multixMt);
 		}
 		Message message = new Message();
@@ -164,12 +153,12 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 		StringBuffer returnValue = new StringBuffer();
 		try {
 			smsSendConn.batchSend(message, returnValue);
-			return SendMultiSmsResponse.builder()
+			return MultiSendSmsResponse.builder()
 				.success(true)
 				.build();
-		} catch (ClientException e) {
+		} catch (Exception e) {
 			log.error("发起梦网个性化内容群发请求失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("500", e.getMessage());
+			throw new ThirdServiceException("C0501", e.getMessage());
 		}
 	}
 
