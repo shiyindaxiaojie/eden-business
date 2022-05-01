@@ -8,18 +8,40 @@
 		<groupId>org.ylzl</groupId>
 		<artifactId>eden-parent</artifactId>
 		<version>2.4.13-SNAPSHOT</version>
-		<relativePath/>
+		<relativePath>../eden-architect/eden-components/eden-parent/pom.xml</relativePath>
 	</parent>
-	<artifactId>eden-solution</artifactId>
+	<artifactId>eden-business</artifactId>
 	<version>2.4.13-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>eden-solution</name>
-	<description>企业应用解决方案</description>
+	<name>eden-business</name>
+	<description>商业组件</description>
 
 	<modules>
 		<module>eden-aliyun-spring-boot-starters</module>
+		<module>eden-emay-spring-boot-starters</module>
+		<module>eden-montnets-spring-boot-starters</module>
 		<module>eden-qcloud-spring-boot-starters</module>
 	</modules>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>https://github.com/eden-lab/eden-bussiness</url>
+		<connection>scm:git:git://github.com/eden-lab/eden-business.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/eden-lab/eden-business.git
+		</developerConnection>
+	</scm>
+
+	<issueManagement>
+		<system>Github</system>
+		<url>https://github.com/eden-lab/eden-bussiness/issues</url>
+	</issueManagement>
 
 	<developers>
 		<developer>
@@ -42,23 +64,163 @@
 	</developers>
 
 	<properties>
-		<reversion>2.4.13-SNAPSHOT</reversion>
+		<!-- 阿里云组件 -->
+		<aliyun-spring-boot.version>1.0.0</aliyun-spring-boot.version>
+		<aliyun-sms-spring-boot-starter.version>1.0.0</aliyun-sms-spring-boot-starter.version>
+		<aliyun-sms.version>2.0.9</aliyun-sms.version>
+		<aliyun-tea.version>0.2.2</aliyun-tea.version>
+
+		<!-- 腾讯云组件 -->
+		<cos_api.version>5.6.38</cos_api.version>
+		<vod_api.version>2.1.4</vod_api.version>
+		<qcloud-java-sdk.version>2.0.6</qcloud-java-sdk.version>
+		<tencentcloud-sdk-java.version>3.1.373</tencentcloud-sdk-java.version>
+		<tencentcloud-cls-log4j2-appender.version>1.0.3</tencentcloud-cls-log4j2-appender.version>
+
+		<!-- 聚合支付组件 -->
+		<ijpay.version>2.7.9</ijpay.version>
 	</properties>
 
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-archetype-plugin</artifactId>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>versions-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>flatten-maven-plugin</artifactId>
-			</plugin>
 		</plugins>
 	</build>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Aliyun Spring Boot 依赖 -->
+			<dependency>
+				<groupId>com.alibaba.cloud</groupId>
+				<artifactId>aliyun-spring-boot-dependencies</artifactId>
+				<version>${aliyun-spring-boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- Aliyun Spring Boot Starter -->
+			<dependency>
+				<groupId>org.ylzl</groupId>
+				<artifactId>eden-aliyun-sms-spring-boot-starter</artifactId>
+				<version>2.4.13-SNAPSHOT</version>
+			</dependency>
+
+			<!-- QCloud Spring Boot Starter -->
+			<dependency>
+				<groupId>org.ylzl</groupId>
+				<artifactId>eden-qcloud-spring-boot-starters</artifactId>
+				<version>2.4.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ylzl</groupId>
+				<artifactId>eden-qcloud-cmq-spring-boot-starter</artifactId>
+				<version>2.4.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ylzl</groupId>
+				<artifactId>eden-qcloud-cos-spring-boot-starter</artifactId>
+				<version>2.4.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ylzl</groupId>
+				<artifactId>eden-qcloud-tms-spring-boot-starter</artifactId>
+				<version>2.4.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ylzl</groupId>
+				<artifactId>eden-qcloud-tpns-spring-boot-starter</artifactId>
+				<version>2.4.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ylzl</groupId>
+				<artifactId>eden-qcloud-vod-spring-boot-starter</artifactId>
+				<version>2.4.13-SNAPSHOT</version>
+			</dependency>
+
+			<!-- Emay Spring Boot Starter -->
+			<dependency>
+				<groupId>org.ylzl</groupId>
+				<artifactId>eden-emay-sms-spring-boot-starter</artifactId>
+				<version>2.4.13-SNAPSHOT</version>
+			</dependency>
+
+			<!-- Montnets Spring Boot Starter -->
+			<dependency>
+				<groupId>org.ylzl</groupId>
+				<artifactId>eden-montnets-sms-spring-boot-starter</artifactId>
+				<version>2.4.13-SNAPSHOT</version>
+			</dependency>
+
+			<!-- 阿里云组件 -->
+			<!-- 短信 -->
+			<dependency>
+				<groupId>com.alibaba.cloud</groupId>
+				<artifactId>aliyun-sms-spring-boot-starter</artifactId>
+				<version>${aliyun-sms-spring-boot-starter.version}</version>
+			</dependency>
+
+			<!-- 腾讯云组件 -->
+			<!-- COS 对象存储 -->
+			<dependency>
+				<groupId>com.qcloud</groupId>
+				<artifactId>cos_api</artifactId>
+				<version>${cos_api.version}</version>
+			</dependency>
+			<!-- VOD 云点播 -->
+			<dependency>
+				<groupId>com.qcloud</groupId>
+				<artifactId>vod_api</artifactId>
+				<version>${vod_api.version}</version>
+			</dependency>
+			<!-- QCloud SDK -->
+			<dependency>
+				<groupId>com.qcloud</groupId>
+				<artifactId>qcloud-java-sdk</artifactId>
+				<version>${qcloud-java-sdk.version}</version>
+			</dependency>
+			<!-- TencentCloud SDK -->
+			<dependency>
+				<groupId>com.tencentcloudapi</groupId>
+				<artifactId>tencentcloud-sdk-java</artifactId>
+				<version>${tencentcloud-sdk-java.version}</version>
+			</dependency>
+			<!-- TencentCloud CLS -->
+			<dependency>
+				<groupId>com.tencentcloudapi.cls</groupId>
+				<artifactId>tencentcloud-cls-log4j2-appender</artifactId>
+				<version>${tencentcloud-cls-log4j2-appender.version}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>logback-core</artifactId>
+						<groupId>ch.qos.logback</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>logback-classic</artifactId>
+						<groupId>ch.qos.logback</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<!-- 聚合组件 -->
+			<!-- AliPay -->
+			<dependency>
+				<groupId>com.github.javen205</groupId>
+				<artifactId>IJPay-AliPay</artifactId>
+				<version>${ijpay.version}</version>
+			</dependency>
+			<!-- WxPay -->
+			<dependency>
+				<groupId>com.github.javen205</groupId>
+				<artifactId>IJPay-WxPay</artifactId>
+				<version>${ijpay.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>

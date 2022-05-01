@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns="http://maven.apache.org/POM/4.0.0"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.ylzl</groupId>
+		<artifactId>eden-aliyun-spring-boot-starters</artifactId>
+		<version>2.4.13-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<artifactId>eden-aliyun-sms-spring-boot-starter</artifactId>
+	<packaging>jar</packaging>
+	<name>eden-aliyun-sms-spring-boot-starter</name>
+	<description>Spring Boot Starter For Aliyun SMS</description>
+
+	<dependencies>
+		<!-- 开发框架 -->
+		<dependency>
+			<groupId>org.ylzl</groupId>
+			<artifactId>eden-spring-framework</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.ylzl</groupId>
+			<artifactId>eden-spring-integration</artifactId>
+		</dependency>
+
+		<!-- 开发工具 -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- 阿里云短信组件 -->
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>aliyun-sms-spring-boot-starter</artifactId>
+		</dependency>
+	</dependencies>
+</project>
