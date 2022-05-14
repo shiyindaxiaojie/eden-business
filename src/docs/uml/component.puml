@@ -1,15 +1,15 @@
 @startuml
 
-[eden-aliyun-spring-boot-starters] --> [eden-solution]
-[eden-oss-spring-boot-starter] --> [eden-aliyun-spring-boot-starters]
-[eden-oss-spring-boot-starter] --> [eden-aliyun-spring-boot-starters]
-[eden-oss-spring-boot-starter] --> [eden-aliyun-spring-boot-starters]
-[eden-oss-spring-boot-starter] --> [eden-aliyun-spring-boot-starters]
-[eden-oss-spring-boot-starter] --> [eden-aliyun-spring-boot-starters]
-[eden-qcloud-spring-boot-starters] --> [eden-solution]
+[eden-aliyun-spring-boot-starters] --> [eden-business]
+[eden-aliyun-sms-spring-boot-starter] --> [eden-aliyun-spring-boot-starters]
+[eden-qcloud-spring-boot-starters] --> [eden-business]
 [eden-cmq-spring-boot-starter] --> [eden-qcloud-spring-boot-starters]
 [eden-cos-spring-boot-starter] --> [eden-qcloud-spring-boot-starters]
 [eden-tms-spring-boot-starter] --> [eden-qcloud-spring-boot-starters]
 [eden-tpns-spring-boot-starter] --> [eden-qcloud-spring-boot-starters]
 [eden-vod-spring-boot-starter] --> [eden-qcloud-spring-boot-starters]
+[eden-emay-spring-boot-starters] --> [eden-business]
+[eden-emay-sms-spring-boot-starter] --> [eden-emay-spring-boot-starters]
+[eden-montnets-spring-boot-starters] --> [eden-business]
+[eden-montnets-sms-spring-boot-starter] --> [eden-montnets-spring-boot-starters]
 @enduml

@@ -1,30 +1,34 @@
-<img src="https://cdn.jsdelivr.net/gh/eden-lab/eden-lab-images/readme/icon.png" align="right" />
+<img src="https://cdn.jsdelivr.net/gh/shiyindaxiaojie/eden-images/readme/icon.png" align="right" />
 
 [license-apache2.0]:https://www.apache.org/licenses/LICENSE-2.0.html
 
-[github-action]:https://github.com/eden-lab/eden-solution/actions
+[github-action]:https://github.com/shiyindaxiaojie/eden-business/actions
 
-[sonarcloud-dashboard]:https://sonarcloud.io/dashboard?id=eden-lab_eden-solution
+[sonarcloud-dashboard]:https://sonarcloud.io/dashboard?id=eden-lab_eden-business
 
-# Eden* Architect
+# Eden* Business
 
-![](https://cdn.jsdelivr.net/gh/eden-lab/eden-lab-images/readme/language-java-blue.svg) [![](https://cdn.jsdelivr.net/gh/eden-lab/eden-lab-images/readme/license-apache2.0-red.svg)][license-apache2.0] [![](https://github.com/eden-lab/eden-solution/workflows/build/badge.svg)][github-action] [![](https://sonarcloud.io/api/project_badges/measure?project=eden-lab_eden-solution&metric=alert_status)][sonarcloud-dashboard]
+![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/eden-images/readme/language-java-blue.svg) [![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/eden-images/readme/license-apache2.0-red.svg)][license-apache2.0] [![](https://github.com/shiyindaxiaojie/eden-business/workflows/build/badge.svg)][github-action] [![](https://sonarcloud.io/api/project_badges/measure?project=eden-lab_eden-business&metric=alert_status)][sonarcloud-dashboard]
 
-Eden* Solution 致力于提供企业开发的一站式解决方案。此项目包含开发分布式应用服务的必需组件，您只需要添加一些注解和少量配置，就可以将 Spring Boot 应用接入微服务解决方案，通过中间件来迅速搭建分布式应用系统。
+Eden* Business 致力于提供企业开发的一站式解决方案。此项目包含开发分布式应用服务的必需组件，您只需要添加一些注解和少量配置，就可以将 Spring Boot 应用接入微服务解决方案，通过中间件来迅速搭建分布式应用系统。
 
-> 参考文档请查看 [WIKI](https://github.com/eden-lab/eden-solution/wiki) 。
+> 参考文档请查看 [WIKI](https://github.com/shiyindaxiaojie/eden-business/wiki) 。
 
 ## 主要功能
 
-* **腾讯云组件集成**：提供了腾讯云产品常用的 `COS 对象存储`、`VOD 云点播`、`TMS 敏感词过滤`、`TPNS 推送`、`CMQ 消息队列`等组件的集成，引入相关 `Spring Boot Starter`
-  开启自动装配能力。
+* **阿里云组件集成**：提供了阿里云产品组件的集成，例如阿里云短信平台。
+* **腾讯云组件集成**：提供了腾讯云产品组件的集成，例如腾讯云短信平台、对象存储、云点播。
+* **梦网组件集成**：提供了梦网短信平台组件的集成。
+* **亿美云组件集成**：提供了亿美短信平台组件的集成。
 
 ## 组件构成
 
-![](https://cdn.jsdelivr.net/gh/eden-lab/eden-lab-images/eden-solution/component.png)
+![](https://cdn.jsdelivr.net/gh/shiyindaxiaojie/eden-images/eden-business/component.png)
 
-* **eden-qcloud-spring-boot-starters**: 腾讯云组件
 * **eden-aliyun-spring-boot-starters**: 阿里云集成
+* **eden-qcloud-spring-boot-starters**: 腾讯云组件
+* **eden-emay-spring-boot-starters**: 亿美平台组件
+* **eden-montnets-spring-boot-starters**: 梦网平台组件
 
 ## 如何构建
 
