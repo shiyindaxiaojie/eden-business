@@ -32,15 +32,15 @@
 	</licenses>
 
 	<scm>
-		<url>https://github.com/eden-lab/eden-bussiness</url>
-		<connection>scm:git:git://github.com/eden-lab/eden-business.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/eden-lab/eden-business.git
+		<url>https://github.com/shiyindaxiaojie/eden-bussiness</url>
+		<connection>scm:git:git://github.com/shiyindaxiaojie/eden-business.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/shiyindaxiaojie/eden-business.git
 		</developerConnection>
 	</scm>
 
 	<issueManagement>
 		<system>Github</system>
-		<url>https://github.com/eden-lab/eden-bussiness/issues</url>
+		<url>https://github.com/shiyindaxiaojie/eden-bussiness/issues</url>
 	</issueManagement>
 
 	<developers>
