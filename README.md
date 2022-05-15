@@ -4,7 +4,7 @@
 
 [github-action]:https://github.com/shiyindaxiaojie/eden-business/actions
 
-[sonarcloud-dashboard]:https://sonarcloud.io/dashboard?id=eden-lab_eden-business
+[sonarcloud-dashboard]:https://sonarcloud.io/dashboard?id=shiyindaxiaojie_eden-business
 
 # Eden* Business
 
@@ -59,12 +59,12 @@ Eden* Business 致力于提供企业开发的一站式解决方案。此项目�
 </parent>
 ```
 
-然后在 `dependencies` 中添加自己所需使用的依赖即可使用，例如，引入腾讯云 COS 组件。
+然后在 `dependencies` 中添加自己所需使用的依赖即可使用，例如，引入阿里云的短信组件。
 
 ```xml
 <dependency>
     <groupId>org.ylzl</groupId>
-    <artifactId>eden-cos-spring-boot-starter</artifactId>
+    <artifactId>eden-aliyun-sms-spring-boot-starter</artifactId>
 </dependency>
 ```
 
