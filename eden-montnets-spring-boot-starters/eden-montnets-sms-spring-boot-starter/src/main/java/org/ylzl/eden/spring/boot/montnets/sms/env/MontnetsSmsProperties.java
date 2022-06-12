@@ -22,7 +22,7 @@ public class MontnetsSmsProperties {
 	/**
 	 * 是否维持长连接
 	 */
-	private Boolean isKeepAlive = true;
+	private boolean isKeepAlive = true;
 
 	/**
 	 * 主地址

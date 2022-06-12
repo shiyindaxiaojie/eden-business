@@ -13,7 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "tencent.cloud.tpns")
 public class TPNSProperties {
 
-	private Boolean enabled;
+	private boolean enabled;
 
 	private String secretId;
 

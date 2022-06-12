@@ -13,7 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "tencent.cloud.vod")
 public class VODProperties {
 
-	private Boolean enabled;
+	private boolean enabled;
 
 	private String secretId;
 
@@ -21,5 +21,5 @@ public class VODProperties {
 
 	private String region;
 
-	private Integer shortignValidDuration;
+	private int shortignValidDuration;
 }

@@ -13,7 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "tencent.cloud.tms")
 public class TMSProperties {
 
-	private Boolean enabled;
+	private boolean enabled;
 
 	private String secretId;
 
