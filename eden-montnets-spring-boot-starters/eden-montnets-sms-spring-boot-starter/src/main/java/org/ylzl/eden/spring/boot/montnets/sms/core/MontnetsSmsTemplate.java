@@ -36,7 +36,7 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 	public void afterPropertiesSet() throws Exception {
 		populateProperties();
 		initAccountInfo();
-		smsSendConn = new SmsSendConn(montnetsSmsProperties.getIsKeepAlive());
+		smsSendConn = new SmsSendConn(montnetsSmsProperties.isKeepAlive());
 	}
 
 	/**
