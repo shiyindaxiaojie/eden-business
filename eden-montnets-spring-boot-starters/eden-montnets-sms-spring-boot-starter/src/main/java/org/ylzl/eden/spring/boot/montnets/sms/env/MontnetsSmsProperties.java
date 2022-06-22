@@ -13,7 +13,7 @@ import java.util.List;
  * 梦网短信配置
  *
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
- * @since 1.0.0
+ * @since 2.4.x
  */
 @Data
 @ConfigurationProperties(prefix = "montnets.sms")
@@ -22,7 +22,7 @@ public class MontnetsSmsProperties {
 	/**
 	 * 是否维持长连接
 	 */
-	private Boolean isKeepAlive = true;
+	private boolean isKeepAlive = true;
 
 	/**
 	 * 主地址
