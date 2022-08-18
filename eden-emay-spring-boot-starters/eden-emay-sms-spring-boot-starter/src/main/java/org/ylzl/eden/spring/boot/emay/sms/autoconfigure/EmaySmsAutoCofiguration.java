@@ -15,7 +15,7 @@ import org.ylzl.eden.spring.boot.emay.sms.env.EmaySmsProperties;
  * 亿美短信自动配置
  *
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
- * @since 2.4.x
+ * @since 2.4.13
  */
 @ConditionalOnProperty(value = "emay.sms.enabled", matchIfMissing = true)
 @ConditionalOnBean(SmsSDKClient.class)

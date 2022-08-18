@@ -7,7 +7,7 @@ import lombok.experimental.SuperBuilder;
  * 腾讯云短信配置
  *
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
- * @since 2.4.x
+ * @since 2.4.13
  */
 @Data
 @AllArgsConstructor

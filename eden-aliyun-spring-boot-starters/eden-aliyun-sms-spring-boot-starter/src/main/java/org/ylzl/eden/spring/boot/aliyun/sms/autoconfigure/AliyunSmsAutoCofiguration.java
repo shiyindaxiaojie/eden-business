@@ -15,7 +15,7 @@ import org.ylzl.eden.spring.boot.aliyun.sms.core.AliyunSmsTemplate;
  * 阿里云短信自动配置
  *
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
- * @since 2.4.x
+ * @since 2.4.13
  */
 @AutoConfigureAfter(SmsAutoConfiguration.class)
 @ConditionalOnProperty(value = "alibaba.cloud.sms.enabled", matchIfMissing = true)

@@ -10,7 +10,7 @@ import org.ylzl.eden.spring.boot.qcloud.tpns.env.TPNSProperties;
  * 腾讯云TPNS 自动配置
  *
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
- * @since 2.4.x
+ * @since 2.4.13
  */
 @ConditionalOnProperty(value = "tencent.cloud.tpns.enabled", havingValue = "true", matchIfMissing = true)
 @EnableConfigurationProperties(TPNSProperties.class)
