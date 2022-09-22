@@ -205,7 +205,7 @@ public class COSTemplate implements InitializingBean, DisposableBean {
 			getObjectRequest.setTrafficLimit(80 * 1024 * 1024);
 		}
 		COSObject cosObject = cosClient.getObject(getObjectRequest);
-		try (COSObjectInputStream cosObjectInput = cosObject.getObjectContent();) {
+		try (COSObjectInputStream ignored = cosObject.getObjectContent();) {
 			return cosObject.getObjectMetadata().getCrc64Ecma();
 		}
 	}

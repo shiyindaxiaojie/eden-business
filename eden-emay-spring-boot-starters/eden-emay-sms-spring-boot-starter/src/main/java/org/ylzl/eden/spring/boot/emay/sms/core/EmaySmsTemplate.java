@@ -12,9 +12,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
+import org.ylzl.eden.sms.core.*;
 import org.ylzl.eden.spring.boot.emay.sms.env.EmaySmsProperties;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
-import org.ylzl.eden.spring.integration.sms.core.*;
 
 /**
  * 亿美短信操作模板
