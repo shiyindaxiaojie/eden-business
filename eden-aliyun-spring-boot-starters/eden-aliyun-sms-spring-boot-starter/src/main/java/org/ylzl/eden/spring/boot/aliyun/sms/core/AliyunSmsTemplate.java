@@ -6,7 +6,7 @@ import com.aliyuncs.exceptions.ClientException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
-import org.ylzl.eden.sms.core.*;
+import org.ylzl.eden.mail.adapter.core.*;
 import org.ylzl.eden.spring.framework.error.ClientErrorType;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
 

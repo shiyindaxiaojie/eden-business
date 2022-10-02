@@ -6,7 +6,7 @@ import com.tencentcloudapi.sms.v20210111.SmsClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
-import org.ylzl.eden.sms.core.*;
+import org.ylzl.eden.mail.adapter.core.*;
 import org.ylzl.eden.spring.boot.qcloud.sms.config.QcloudSmsConfig;
 import org.ylzl.eden.spring.framework.error.ClientErrorType;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;

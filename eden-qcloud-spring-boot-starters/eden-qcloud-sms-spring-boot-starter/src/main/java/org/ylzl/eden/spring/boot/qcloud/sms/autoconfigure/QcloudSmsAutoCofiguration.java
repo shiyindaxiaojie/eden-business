@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.ylzl.eden.mail.adapter.core.SmsTemplateFactory;
 import org.ylzl.eden.spring.boot.qcloud.sms.config.QcloudSmsConfig;
 import org.ylzl.eden.spring.boot.qcloud.sms.core.QcloudSmsTemplate;
 import org.ylzl.eden.spring.boot.qcloud.sms.env.QcloudSmsProperties;
@@ -18,14 +19,18 @@ import org.ylzl.eden.spring.boot.qcloud.sms.env.QcloudSmsProperties;
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
  * @since 2.4.13
  */
-@ConditionalOnProperty(value = "tencent.cloud.sms.enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(value = QcloudSmsAutoCofiguration.ENABLED, havingValue = "true", matchIfMissing = true)
 @ConditionalOnClass(SmsClient.class)
 @EnableConfigurationProperties(QcloudSmsProperties.class)
 @Slf4j
 @Configuration
 public class QcloudSmsAutoCofiguration {
 
-	public static final String QCLOUD_SMS_TEMPLATE = "qcloudSmsTemplate";
+	public static final String ENABLED = "tencent.cloud.sms.enabled";
+
+	public static final String TYPE = "QCLOUD";
+
+	public static final String BEAN = "qcloudSmsTemplate";
 
 	private static final String AUTOWIRED_TENCENT_CLOUD_SMS_TEMPLATE = "Autowired TencentCloudSmsTemplate";
 
@@ -36,9 +41,10 @@ public class QcloudSmsAutoCofiguration {
 	}
 
 	@ConditionalOnMissingBean
-	@Bean(QCLOUD_SMS_TEMPLATE)
+	@Bean(BEAN)
 	public QcloudSmsTemplate qcloudSmsTemplate() {
 		log.info(AUTOWIRED_TENCENT_CLOUD_SMS_TEMPLATE);
+		SmsTemplateFactory.addBean(TYPE, BEAN);
 		return new QcloudSmsTemplate(QcloudSmsConfig.builder()
 			.smsSdkAppId(qcloudSmsProperties.getSmsSdkAppId())
 			.secretKey(qcloudSmsProperties.getSecretKey())
