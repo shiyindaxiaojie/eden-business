@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.ylzl.eden.mail.adapter.core.SmsTemplateFactory;
 import org.ylzl.eden.spring.boot.emay.sms.core.EmaySmsTemplate;
 import org.ylzl.eden.spring.boot.emay.sms.env.EmaySmsProperties;
 
@@ -15,16 +16,20 @@ import org.ylzl.eden.spring.boot.emay.sms.env.EmaySmsProperties;
  * 亿美短信自动配置
  *
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
- * @since 2.4.x
+ * @since 2.4.13
  */
-@ConditionalOnProperty(value = "emay.sms.enabled", matchIfMissing = true)
+@ConditionalOnProperty(value = EmaySmsAutoCofiguration.ENABLED, matchIfMissing = true)
 @ConditionalOnBean(SmsSDKClient.class)
 @EnableConfigurationProperties(EmaySmsProperties.class)
 @Slf4j
 @Configuration
 public class EmaySmsAutoCofiguration {
 
-	public static final String EMAY_TEMPLATE = "emaySmsTemplate";
+	public static final String ENABLED = "emay.sms.enabled";
+
+	public static final String TYPE = "EMAY";
+
+	public static final String BEAN = "emaySmsTemplate";
 
 	private static final String AUTOWIRED_EMAY_SMS_TEMPLATE = "Autowired emaySmsTemplate";
 
@@ -35,9 +40,10 @@ public class EmaySmsAutoCofiguration {
 	}
 
 	@ConditionalOnMissingBean
-	@Bean(EMAY_TEMPLATE)
+	@Bean(BEAN)
 	public EmaySmsTemplate emaySmsTemplate() {
 		log.info(AUTOWIRED_EMAY_SMS_TEMPLATE);
+		SmsTemplateFactory.addBean(TYPE, BEAN);
 		return new EmaySmsTemplate(emaySmsProperties);
 	}
 }

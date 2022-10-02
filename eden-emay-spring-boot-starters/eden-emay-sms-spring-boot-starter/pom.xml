@@ -19,11 +19,7 @@
 		<!-- 开发框架 -->
 		<dependency>
 			<groupId>org.ylzl</groupId>
-			<artifactId>eden-spring-framework</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.ylzl</groupId>
-			<artifactId>eden-spring-integration</artifactId>
+			<artifactId>eden-sms-adapter</artifactId>
 		</dependency>
 
 		<!-- 开发工具 -->
@@ -39,5 +35,5 @@
 			<artifactId>eucp-sms-sdk</artifactId>
 			<version>1.3.3</version>
 		</dependency>
-	</dependencies>
+    </dependencies>
 </project>

@@ -6,10 +6,10 @@ import com.tencentcloudapi.sms.v20210111.SmsClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
+import org.ylzl.eden.mail.adapter.core.*;
 import org.ylzl.eden.spring.boot.qcloud.sms.config.QcloudSmsConfig;
 import org.ylzl.eden.spring.framework.error.ClientErrorType;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
-import org.ylzl.eden.spring.integration.sms.core.*;
 
 import java.util.Collection;
 import java.util.Map;
@@ -18,7 +18,7 @@ import java.util.Map;
  * 腾讯云短信操作模板
  *
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
- * @since 2.4.x
+ * @since 2.4.13
  */
 @RequiredArgsConstructor
 @Slf4j

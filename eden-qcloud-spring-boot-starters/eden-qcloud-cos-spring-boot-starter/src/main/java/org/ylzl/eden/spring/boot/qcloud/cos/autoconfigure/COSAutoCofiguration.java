@@ -13,7 +13,7 @@ import org.ylzl.eden.spring.boot.qcloud.cos.core.COSTemplate;
  * 腾讯云COS 自动配置
  *
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
- * @since 2.4.x
+ * @since 2.4.13
  */
 @ConditionalOnProperty(value = "tencent.cloud.cos.enabled", havingValue =
 	"true", matchIfMissing = true)

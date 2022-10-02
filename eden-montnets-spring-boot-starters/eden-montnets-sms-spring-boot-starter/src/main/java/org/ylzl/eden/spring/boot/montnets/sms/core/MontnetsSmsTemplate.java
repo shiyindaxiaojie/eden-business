@@ -9,11 +9,11 @@ import com.montnets.mwgate.smsutil.SmsSendConn;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
+import org.ylzl.eden.mail.adapter.core.*;
 import org.ylzl.eden.spring.boot.montnets.sms.env.MontnetsSmsProperties;
 import org.ylzl.eden.spring.framework.error.ClientErrorType;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
 import org.ylzl.eden.spring.framework.error.util.AssertEnhancer;
-import org.ylzl.eden.spring.integration.sms.core.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -22,7 +22,7 @@ import java.util.List;
  * 梦网短信操作模板
  *
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
- * @since 2.4.x
+ * @since 2.4.13
  */
 @RequiredArgsConstructor
 @Slf4j
@@ -36,7 +36,7 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 	public void afterPropertiesSet() throws Exception {
 		populateProperties();
 		initAccountInfo();
-		smsSendConn = new SmsSendConn(montnetsSmsProperties.getIsKeepAlive());
+		smsSendConn = new SmsSendConn(montnetsSmsProperties.isKeepAlive());
 	}
 
 	/**
