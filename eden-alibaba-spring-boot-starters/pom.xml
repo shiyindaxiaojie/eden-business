@@ -10,13 +10,14 @@
 		<version>2.4.13.20221021</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	<artifactId>eden-montnets-spring-boot-starters</artifactId>
+	<artifactId>eden-alibaba-spring-boot-starters</artifactId>
 	<packaging>pom</packaging>
-	<name>eden-montnets-spring-boot-starters</name>
-	<description>梦网商业组件</description>
+	<name>eden-alibaba-spring-boot-starters</name>
+	<description>阿里云组件</description>
 
 	<modules>
-		<module>eden-montnets-sms-spring-boot-starter</module>
+		<module>eden-alipay-spring-boot-starters</module>
+		<module>eden-aliyun-spring-boot-starters</module>
 	</modules>
 
 </project>

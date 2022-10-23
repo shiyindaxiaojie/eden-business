@@ -12,8 +12,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
-import org.ylzl.eden.sms.core.*;
-import org.ylzl.eden.spring.boot.emay.sms.env.EmaySmsProperties;
+import org.ylzl.eden.sms.adapter.core.SmsTemplate;
+import org.ylzl.eden.sms.adapter.core.batch.BatchSendSmsRequest;
+import org.ylzl.eden.sms.adapter.core.batch.BatchSendSmsResponse;
+import org.ylzl.eden.sms.adapter.core.multi.MultiSendSmsRequest;
+import org.ylzl.eden.sms.adapter.core.multi.MultiSendSmsResponse;
+import org.ylzl.eden.sms.adapter.core.single.SingleSendSmsRequest;
+import org.ylzl.eden.sms.adapter.core.single.SingleSendSmsResponse;
+import org.ylzl.eden.sms.adapter.core.template.SendTemplateSmsRequest;
+import org.ylzl.eden.sms.adapter.core.template.SendTemplateSmsResponse;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
 
 /**
