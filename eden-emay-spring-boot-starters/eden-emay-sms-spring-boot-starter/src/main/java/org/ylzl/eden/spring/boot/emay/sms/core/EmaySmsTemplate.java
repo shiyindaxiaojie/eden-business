@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
+import org.ylzl.eden.sms.adapter.core.SmsModel;
 import org.ylzl.eden.sms.adapter.core.SmsTemplate;
 import org.ylzl.eden.sms.adapter.core.batch.BatchSendSmsRequest;
 import org.ylzl.eden.sms.adapter.core.batch.BatchSendSmsResponse;
@@ -21,6 +22,7 @@ import org.ylzl.eden.sms.adapter.core.single.SingleSendSmsRequest;
 import org.ylzl.eden.sms.adapter.core.single.SingleSendSmsResponse;
 import org.ylzl.eden.sms.adapter.core.template.SendTemplateSmsRequest;
 import org.ylzl.eden.sms.adapter.core.template.SendTemplateSmsResponse;
+import org.ylzl.eden.spring.boot.emay.sms.config.EmaySmsConfig;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
 
 /**
@@ -35,17 +37,17 @@ public class EmaySmsTemplate implements SmsTemplate, InitializingBean {
 
 	public static final String SUCCESS = "SUCCESS";
 
-	private final EmaySmsProperties emaySmsProperties;
+	private final EmaySmsConfig emaySmsConfig;
 
 	private SmsSDKClient smsSDKClient;
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		if (StringUtils.isNotEmpty(emaySmsProperties.getIp()) && emaySmsProperties.getPort() > 0) {
-			smsSDKClient = new SmsSDKClient(emaySmsProperties.getIp(), emaySmsProperties.getPort(),
-				emaySmsProperties.getAppId(), emaySmsProperties.getSecretKey());
+		if (StringUtils.isNotEmpty(emaySmsConfig.getIp()) && emaySmsConfig.getPort() > 0) {
+			smsSDKClient = new SmsSDKClient(emaySmsConfig.getIp(), emaySmsConfig.getPort(),
+				emaySmsConfig.getAppId(), emaySmsConfig.getSecretKey());
 		} else {
-			smsSDKClient = new SmsSDKClient(emaySmsProperties.getAppId(), emaySmsProperties.getSecretKey());
+			smsSDKClient = new SmsSDKClient(emaySmsConfig.getAppId(), emaySmsConfig.getSecretKey());
 		}
 	}
 
@@ -132,12 +134,12 @@ public class EmaySmsTemplate implements SmsTemplate, InitializingBean {
 		log.debug("发起亿美个性化内容群发请求，参数：{}", request);
 		SmsPersonalityAllRequest smsPersonalityAllRequest = new SmsPersonalityAllRequest();
 
-		int size = request.getSendSmsList().size();
+		int size = request.getSmsModelList().size();
 		PersonalityParams[] personalityParams = new PersonalityParams[size];
 		for (int i = 0; i < size; i++) {
-			SendSms sendSms = request.getSendSmsList().get(i);
-			personalityParams[i] = new PersonalityParams(sendSms.getCustomSmsId(),
-				sendSms.getPhoneNumber(), sendSms.getSmsContent(), sendSms.getExtendedCode(), sendSms.getTimerTime());
+			SmsModel smsModel = request.getSmsModelList().get(i);
+			personalityParams[i] = new PersonalityParams(smsModel.getCustomSmsId(),
+				smsModel.getPhoneNumber(), smsModel.getSmsContent(), smsModel.getExtendedCode(), smsModel.getTimerTime());
 		}
 		smsPersonalityAllRequest.setSmses(personalityParams);
 		try {

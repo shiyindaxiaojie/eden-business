@@ -2,6 +2,7 @@ package org.ylzl.eden.spring.boot.emay.sms.env;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.ylzl.eden.spring.boot.emay.sms.config.EmaySmsConfig;
 
 /**
  * 亿美短信配置
@@ -10,26 +11,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @since 2.4.13
  */
 @Data
-@ConfigurationProperties(prefix = "emay.sms")
+@ConfigurationProperties(prefix = EmaySmsProperties.PREFIX)
 public class EmaySmsProperties {
 
-	/**
-	 * 应用ID
-	 */
-	private String appId;
+	public static final String PREFIX = "emay.sms";
 
-	/**
-	 * 密钥
-	 */
-	private String secretKey;
+	public static final String ENABLED = PREFIX + ".enabled";
 
-	/**
-	 * 地址
-	 */
-	private String ip;
+	private boolean enabled;
 
-	/**
-	 * 端口
-	 */
-	private int port;
+	private EmaySmsConfig sms;
 }
