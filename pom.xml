@@ -53,14 +53,6 @@
 				<role>Architect</role>
 			</roles>
 		</developer>
-		<developer>
-			<id>zx</id>
-			<name>欣熙林林</name>
-			<roles>
-				<role>Developer</role>
-				<role>CI/SCM Engineer</role>
-			</roles>
-		</developer>
 	</developers>
 
 	<properties>
@@ -79,6 +71,12 @@
 
 		<!-- 聚合支付组件 -->
 		<ijpay.version>2.7.9</ijpay.version>
+
+		<!-- 亿美组件 -->
+		<emay-sms.version>1.3.3</emay-sms.version>
+
+		<!-- 梦网组件 -->
+		<montnets-sms.version>5.5</montnets-sms.version>
 	</properties>
 
 	<build>
@@ -220,6 +218,20 @@
 				<groupId>com.github.javen205</groupId>
 				<artifactId>IJPay-WxPay</artifactId>
 				<version>${ijpay.version}</version>
+			</dependency>
+
+			<!-- 亿美组件 -->
+			<dependency>
+				<groupId>cn.emay</groupId>
+				<artifactId>eucp-sms-sdk</artifactId>
+				<version>${emay-sms.version}</version>
+			</dependency>
+
+			<!-- 梦网组件 -->
+			<dependency>
+				<groupId>com.montnets.mwgate</groupId>
+				<artifactId>sms-sdk</artifactId>
+				<version>${montnets-sms.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

@@ -33,7 +33,8 @@
 		<dependency>
 			<groupId>cn.emay</groupId>
 			<artifactId>eucp-sms-sdk</artifactId>
-			<version>1.3.3</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/eucp-sms-sdk-1.3.3.jar</systemPath>
 		</dependency>
     </dependencies>
 </project>
