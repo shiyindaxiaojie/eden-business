@@ -39,7 +39,7 @@
 			<groupId>com.montnets.mwgate</groupId>
 			<artifactId>sms-sdk</artifactId>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/sdk-sms-java-5.7.jar</systemPath>
+			<systemPath>${project.basedir}/lib/sms-sdk-5.7.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
