@@ -19,7 +19,7 @@
 		<!-- 开发框架 -->
 		<dependency>
 			<groupId>org.ylzl</groupId>
-			<artifactId>eden-sms-adapter</artifactId>
+			<artifactId>eden-common-sms</artifactId>
 		</dependency>
 
 		<!-- 开发工具 -->

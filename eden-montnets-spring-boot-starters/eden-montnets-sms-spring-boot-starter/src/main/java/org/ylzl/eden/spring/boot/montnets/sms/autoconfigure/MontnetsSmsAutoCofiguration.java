@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.ylzl.eden.sms.adapter.core.SmsType;
+import org.ylzl.eden.common.sms.core.SmsType;
 import org.ylzl.eden.spring.boot.montnets.sms.core.MontnetsSmsTemplate;
 import org.ylzl.eden.spring.boot.montnets.sms.env.MontnetsSmsProperties;
 

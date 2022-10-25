@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.ylzl.eden.sms.adapter.core.SmsType;
+import org.ylzl.eden.common.sms.core.SmsType;
 import org.ylzl.eden.spring.boot.aliyun.sms.core.AliyunSmsTemplate;
 
 /**
