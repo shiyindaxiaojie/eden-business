@@ -20,7 +20,7 @@ import org.ylzl.eden.common.sms.core.single.SingleSendSmsResponse;
 import org.ylzl.eden.common.sms.core.template.SendTemplateSmsRequest;
 import org.ylzl.eden.common.sms.core.template.SendTemplateSmsResponse;
 import org.ylzl.eden.spring.boot.montnets.sms.env.MontnetsSmsProperties;
-import org.ylzl.eden.spring.framework.error.ClientErrorType;
+import org.ylzl.eden.spring.framework.error.ClientAssert;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
 import org.ylzl.eden.spring.framework.error.util.AssertEnhancer;
 
@@ -150,7 +150,7 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 		Collection<SmsModel> smsModelList = request.getSmsModelList();
 		List<MultiMt> multixMts = Lists.newArrayListWithCapacity(smsModelList.size());
 		for (SmsModel model : smsModelList) {
-			ClientErrorType.notNull(model.getPhoneNumber(), "A0001", "发送梦网短信的接收号码不能为空");
+			ClientAssert.notNull(model.getPhoneNumber(), "A0001", "发送梦网短信的接收号码不能为空");
 			MultiMt multixMt = new MultiMt();
 			multixMt.setMobile(model.getPhoneNumber());
 			multixMt.setContent(model.getSmsContent());

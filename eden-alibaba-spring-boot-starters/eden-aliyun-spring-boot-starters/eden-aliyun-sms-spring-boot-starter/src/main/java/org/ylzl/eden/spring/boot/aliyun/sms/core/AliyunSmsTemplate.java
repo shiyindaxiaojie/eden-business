@@ -15,7 +15,7 @@ import org.ylzl.eden.common.sms.core.single.SingleSendSmsRequest;
 import org.ylzl.eden.common.sms.core.single.SingleSendSmsResponse;
 import org.ylzl.eden.common.sms.core.template.SendTemplateSmsRequest;
 import org.ylzl.eden.common.sms.core.template.SendTemplateSmsResponse;
-import org.ylzl.eden.spring.framework.error.ClientErrorType;
+import org.ylzl.eden.spring.framework.error.ClientAssert;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
 
 import java.util.Collection;
@@ -48,11 +48,11 @@ public class AliyunSmsTemplate implements SmsTemplate {
 			new com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest();
 
 		Collection<String> phoneNumbers = request.getPhoneNumbers();
-		ClientErrorType.notNull(phoneNumbers,"A0001", "发送阿里云短信的接收号码不能为空");
+		ClientAssert.notNull(phoneNumbers,"A0001", "发送阿里云短信的接收号码不能为空");
 		sendSmsRequest.setPhoneNumbers(StringUtils.collectionToCommaDelimitedString(phoneNumbers));
 
 		Map<String, String> templateParam = request.getTemplateParam();
-		ClientErrorType.notNull(templateParam,"A0001", "发送阿里云短信的模板参数不能为空");
+		ClientAssert.notNull(templateParam,"A0001", "发送阿里云短信的模板参数不能为空");
 		sendSmsRequest.setTemplateParam(JSONUtil.toJsonStr(templateParam));
 		sendSmsRequest.setTemplateCode(request.getTemplateCode());
 
