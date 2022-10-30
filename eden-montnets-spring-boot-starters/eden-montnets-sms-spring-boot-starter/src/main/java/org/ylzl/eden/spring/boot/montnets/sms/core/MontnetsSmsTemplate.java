@@ -9,9 +9,18 @@ import com.montnets.mwgate.smsutil.SmsSendConn;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
-import org.ylzl.eden.mail.adapter.core.*;
+import org.ylzl.eden.common.sms.core.SmsModel;
+import org.ylzl.eden.common.sms.core.SmsTemplate;
+import org.ylzl.eden.common.sms.core.batch.BatchSendSmsRequest;
+import org.ylzl.eden.common.sms.core.batch.BatchSendSmsResponse;
+import org.ylzl.eden.common.sms.core.multi.MultiSendSmsRequest;
+import org.ylzl.eden.common.sms.core.multi.MultiSendSmsResponse;
+import org.ylzl.eden.common.sms.core.single.SingleSendSmsRequest;
+import org.ylzl.eden.common.sms.core.single.SingleSendSmsResponse;
+import org.ylzl.eden.common.sms.core.template.SendTemplateSmsRequest;
+import org.ylzl.eden.common.sms.core.template.SendTemplateSmsResponse;
 import org.ylzl.eden.spring.boot.montnets.sms.env.MontnetsSmsProperties;
-import org.ylzl.eden.spring.framework.error.ClientErrorType;
+import org.ylzl.eden.spring.framework.error.ClientAssert;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
 import org.ylzl.eden.spring.framework.error.util.AssertEnhancer;
 
@@ -36,7 +45,7 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 	public void afterPropertiesSet() throws Exception {
 		populateProperties();
 		initAccountInfo();
-		smsSendConn = new SmsSendConn(montnetsSmsProperties.isKeepAlive());
+		smsSendConn = new SmsSendConn(montnetsSmsProperties.getSms().isKeepAlive());
 	}
 
 	/**
@@ -44,20 +53,20 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 	 */
 	private void populateProperties() {
 		GlobalParams globalParams = GlobalParams.getInstance();
-		globalParams.setRequestPath(montnetsSmsProperties.getGlobalParams().getRequestPath());
-		globalParams.setNeedLog(montnetsSmsProperties.getGlobalParams().getNeedLog());
-		globalParams.setPoolNumber(montnetsSmsProperties.getGlobalParams().getPoolNumber());
-		globalParams.setPwdEncryptType(montnetsSmsProperties.getGlobalParams().getPwdEncryptType());
+		globalParams.setRequestPath(montnetsSmsProperties.getSms().getGlobalParams().getRequestPath());
+		globalParams.setNeedLog(montnetsSmsProperties.getSms().getGlobalParams().getNeedLog());
+		globalParams.setPoolNumber(montnetsSmsProperties.getSms().getGlobalParams().getPoolNumber());
+		globalParams.setPwdEncryptType(montnetsSmsProperties.getSms().getGlobalParams().getPwdEncryptType());
 
-		globalParams.setMsgMtEncode(montnetsSmsProperties.getGlobalParams().getMsgMtEncode());
-		globalParams.setMsgMtEncrypt(montnetsSmsProperties.getGlobalParams().getMsgMtEncrypt());
-		globalParams.setMtKey(montnetsSmsProperties.getGlobalParams().getMtKey());
-		globalParams.setMtFixedKey(montnetsSmsProperties.getGlobalParams().getMtFixedKey());
+		globalParams.setMsgMtEncode(montnetsSmsProperties.getSms().getGlobalParams().getMsgMtEncode());
+		globalParams.setMsgMtEncrypt(montnetsSmsProperties.getSms().getGlobalParams().getMsgMtEncrypt());
+		globalParams.setMtKey(montnetsSmsProperties.getSms().getGlobalParams().getMtKey());
+		globalParams.setMtFixedKey(montnetsSmsProperties.getSms().getGlobalParams().getMtFixedKey());
 
 		// FIXME：globalParams.setMsgMoEncode，梦网没有设置这个入口
-		globalParams.setMsgMoEncrypt(montnetsSmsProperties.getGlobalParams().getMsgMoEncrypt());
-		globalParams.setMoKey(montnetsSmsProperties.getGlobalParams().getMoKey());
-		globalParams.setMoFixedKey(montnetsSmsProperties.getGlobalParams().getMoFixedKey());
+		globalParams.setMsgMoEncrypt(montnetsSmsProperties.getSms().getGlobalParams().getMsgMoEncrypt());
+		globalParams.setMoKey(montnetsSmsProperties.getSms().getGlobalParams().getMoKey());
+		globalParams.setMoFixedKey(montnetsSmsProperties.getSms().getGlobalParams().getMoFixedKey());
 		smsSendConn = new SmsSendConn(true);
 	}
 
@@ -65,13 +74,13 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 	 * 初始化账号
 	 */
 	private void initAccountInfo() {
-		AssertEnhancer.notEmpty(montnetsSmsProperties.getAccountInfo(), "请求梦网的域名不能为空，请联系联系梦网客服进行获取。");
-		int size = montnetsSmsProperties.getAccountInfo().size();
-		String address1 = montnetsSmsProperties.getAccountInfo().get(0);
-		String address2 = size > 1? montnetsSmsProperties.getAccountInfo().get(1) : null;
-		String address3 = size > 2? montnetsSmsProperties.getAccountInfo().get(2) : null;
-		String address4 = size > 3? montnetsSmsProperties.getAccountInfo().get(3) : null;
-		for (String accountInfo : montnetsSmsProperties.getAccountInfo()) {
+		AssertEnhancer.notEmpty(montnetsSmsProperties.getSms().getAccountInfo(), "请求梦网的域名不能为空，请联系联系梦网客服进行获取。");
+		int size = montnetsSmsProperties.getSms().getAccountInfo().size();
+		String address1 = montnetsSmsProperties.getSms().getAccountInfo().get(0);
+		String address2 = size > 1? montnetsSmsProperties.getSms().getAccountInfo().get(1) : null;
+		String address3 = size > 2? montnetsSmsProperties.getSms().getAccountInfo().get(2) : null;
+		String address4 = size > 3? montnetsSmsProperties.getSms().getAccountInfo().get(3) : null;
+		for (String accountInfo : montnetsSmsProperties.getSms().getAccountInfo()) {
 			String[] split = accountInfo.split("@@");
 			int result = ConfigManager.setAccountInfo(split[0], split[1], 1, address1, address2, address3, address4);
 			// 判断返回结果（0：成功，1：失败）
@@ -100,7 +109,7 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 				.build();
 		} catch (Exception e) {
 			log.error("发起梦网单条短信请求失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("C0501", e.getMessage());
+			throw new ThirdServiceException("SMS-ERROR-500", e.getMessage());
 		}
 	}
 
@@ -125,7 +134,7 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 				.build();
 		} catch (Exception e) {
 			log.error("发起梦网相同内容群发请求失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("C0501", e.getMessage());
+			throw new ThirdServiceException("SMS-ERROR-500", e.getMessage());
 		}
 	}
 
@@ -138,14 +147,14 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 	@Override
 	public MultiSendSmsResponse multiSend(MultiSendSmsRequest request) {
 		log.debug("发起梦网个性化内容群发请求，参数：{}", request);
-		Collection<SendSms> sendSmsList = request.getSendSmsList();
-		List<MultiMt> multixMts = Lists.newArrayListWithCapacity(sendSmsList.size());
-		for (SendSms sendSms : sendSmsList) {
-			ClientErrorType.notNull(sendSms.getPhoneNumber(), "A0001", "发送梦网短信的接收号码不能为空");
+		Collection<SmsModel> smsModelList = request.getSmsModelList();
+		List<MultiMt> multixMts = Lists.newArrayListWithCapacity(smsModelList.size());
+		for (SmsModel model : smsModelList) {
+			ClientAssert.notNull(model.getPhoneNumber(), "BAD-REQUEST-400", "发送梦网短信的接收号码不能为空");
 			MultiMt multixMt = new MultiMt();
-			multixMt.setMobile(sendSms.getPhoneNumber());
-			multixMt.setContent(sendSms.getSmsContent());
-			multixMt.setCustid(sendSms.getCustomSmsId());
+			multixMt.setMobile(model.getPhoneNumber());
+			multixMt.setContent(model.getSmsContent());
+			multixMt.setCustid(model.getCustomSmsId());
 			multixMts.add(multixMt);
 		}
 		Message message = new Message();
@@ -158,7 +167,7 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 				.build();
 		} catch (Exception e) {
 			log.error("发起梦网个性化内容群发请求失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("C0501", e.getMessage());
+			throw new ThirdServiceException("SMS-ERROR-500", e.getMessage());
 		}
 	}
 

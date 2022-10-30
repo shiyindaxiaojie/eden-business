@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.ylzl</groupId>
 		<artifactId>eden-montnets-spring-boot-starters</artifactId>
-		<version>2.4.13-SNAPSHOT</version>
+		<version>2.4.13.20221030</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>eden-montnets-sms-spring-boot-starter</artifactId>
@@ -15,11 +15,16 @@
 	<name>eden-montnets-sms-spring-boot-starter</name>
 	<description>Spring Boot Starter For Montnets SMS</description>
 
+	<properties>
+		<dom4j.version>1.6.1</dom4j.version>
+		<json-simple.version>1.1.1</json-simple.version>
+	</properties>
+
 	<dependencies>
 		<!-- 开发框架 -->
 		<dependency>
 			<groupId>org.ylzl</groupId>
-			<artifactId>eden-sms-adapter</artifactId>
+			<artifactId>eden-common-sms</artifactId>
 		</dependency>
 
 		<!-- 开发工具 -->
@@ -33,7 +38,8 @@
 		<dependency>
 			<groupId>com.montnets.mwgate</groupId>
 			<artifactId>sms-sdk</artifactId>
-			<version>5.7</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/sms-sdk-5.7.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
@@ -52,11 +58,6 @@
 			<artifactId>commons-logging</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>dom4j</groupId>
-			<artifactId>dom4j</artifactId>
-			<version>1.6.1</version>
-		</dependency>
-		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 		</dependency>
@@ -67,7 +68,12 @@
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
-			<version>1.1.1</version>
+			<version>${json-simple.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>${dom4j.version}</version>
 		</dependency>
 	</dependencies>
 </project>
