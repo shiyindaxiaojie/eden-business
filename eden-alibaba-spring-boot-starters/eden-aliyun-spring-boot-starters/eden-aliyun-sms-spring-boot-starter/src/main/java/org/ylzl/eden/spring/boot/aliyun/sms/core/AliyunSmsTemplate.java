@@ -48,11 +48,11 @@ public class AliyunSmsTemplate implements SmsTemplate {
 			new com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest();
 
 		Collection<String> phoneNumbers = request.getPhoneNumbers();
-		ClientAssert.notNull(phoneNumbers,"A0001", "发送阿里云短信的接收号码不能为空");
+		ClientAssert.notNull(phoneNumbers,"BAD-REQUEST-400", "发送阿里云短信的接收号码不能为空");
 		sendSmsRequest.setPhoneNumbers(StringUtils.collectionToCommaDelimitedString(phoneNumbers));
 
 		Map<String, String> templateParam = request.getTemplateParam();
-		ClientAssert.notNull(templateParam,"A0001", "发送阿里云短信的模板参数不能为空");
+		ClientAssert.notNull(templateParam,"BAD-REQUEST-400", "发送阿里云短信的模板参数不能为空");
 		sendSmsRequest.setTemplateParam(JSONUtil.toJsonStr(templateParam));
 		sendSmsRequest.setTemplateCode(request.getTemplateCode());
 
@@ -67,7 +67,7 @@ public class AliyunSmsTemplate implements SmsTemplate {
 				.build();
 		} catch (ClientException e) {
 			log.error("发送阿里云短信失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("C0501", e.getMessage());
+			throw new ThirdServiceException("SMS-ERROR-500", e.getMessage());
 		}
 	}
 

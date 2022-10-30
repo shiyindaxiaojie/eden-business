@@ -55,11 +55,11 @@ public class QcloudSmsTemplate implements SmsTemplate, InitializingBean {
 			new com.tencentcloudapi.sms.v20210111.models.SendSmsRequest();
 
 		Collection<String> phoneNumbers = request.getPhoneNumbers();
-		ClientAssert.notNull(phoneNumbers,"A0001", "发送腾讯云短信的接收号码不能为空");
+		ClientAssert.notNull(phoneNumbers,"BAD-REQUEST-400", "发送腾讯云短信的接收号码不能为空");
 		sendSmsRequest.setPhoneNumberSet(phoneNumbers.toArray(new String[0]));
 
 		Map<String, String> templateParam = request.getTemplateParam();
-		ClientAssert.notNull(templateParam,"A0001", "发送腾讯云短信的模板参数不能为空");
+		ClientAssert.notNull(templateParam,"BAD-REQUEST-400", "发送腾讯云短信的模板参数不能为空");
 		sendSmsRequest.setTemplateParamSet(templateParam.keySet().toArray(new String[0]));
 		sendSmsRequest.setTemplateId(request.getTemplateCode());
 
@@ -72,7 +72,7 @@ public class QcloudSmsTemplate implements SmsTemplate, InitializingBean {
 				.build();
 		} catch (TencentCloudSDKException e) {
 			log.error("发送腾讯云短信失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("C0501", e.getMessage());
+			throw new ThirdServiceException("SMS-ERROR-500", e.getMessage());
 		}
 	}
 

@@ -109,7 +109,7 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 				.build();
 		} catch (Exception e) {
 			log.error("发起梦网单条短信请求失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("C0501", e.getMessage());
+			throw new ThirdServiceException("SMS-ERROR-500", e.getMessage());
 		}
 	}
 
@@ -134,7 +134,7 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 				.build();
 		} catch (Exception e) {
 			log.error("发起梦网相同内容群发请求失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("C0501", e.getMessage());
+			throw new ThirdServiceException("SMS-ERROR-500", e.getMessage());
 		}
 	}
 
@@ -150,7 +150,7 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 		Collection<SmsModel> smsModelList = request.getSmsModelList();
 		List<MultiMt> multixMts = Lists.newArrayListWithCapacity(smsModelList.size());
 		for (SmsModel model : smsModelList) {
-			ClientAssert.notNull(model.getPhoneNumber(), "A0001", "发送梦网短信的接收号码不能为空");
+			ClientAssert.notNull(model.getPhoneNumber(), "BAD-REQUEST-400", "发送梦网短信的接收号码不能为空");
 			MultiMt multixMt = new MultiMt();
 			multixMt.setMobile(model.getPhoneNumber());
 			multixMt.setContent(model.getSmsContent());
@@ -167,7 +167,7 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 				.build();
 		} catch (Exception e) {
 			log.error("发起梦网个性化内容群发请求失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("C0501", e.getMessage());
+			throw new ThirdServiceException("SMS-ERROR-500", e.getMessage());
 		}
 	}
 

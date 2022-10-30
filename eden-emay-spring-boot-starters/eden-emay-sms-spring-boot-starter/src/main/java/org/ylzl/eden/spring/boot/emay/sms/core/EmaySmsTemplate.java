@@ -81,7 +81,7 @@ public class EmaySmsTemplate implements SmsTemplate, InitializingBean {
 				.build();
 		} catch (Exception e) {
 			log.error("发起梦网单条短信请求失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("C0501", e.getMessage());
+			throw new ThirdServiceException("SMS-ERROR-500", e.getMessage());
 		}
 	}
 
@@ -119,7 +119,7 @@ public class EmaySmsTemplate implements SmsTemplate, InitializingBean {
 				.build();
 		} catch (Exception e) {
 			log.error("发起梦网相同内容群发请求失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("C0501", e.getMessage());
+			throw new ThirdServiceException("SMS-ERROR-500", e.getMessage());
 		}
 	}
 
@@ -158,7 +158,7 @@ public class EmaySmsTemplate implements SmsTemplate, InitializingBean {
 				.build();
 		} catch (Exception e) {
 			log.error("发起梦网个性化内容群发请求失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("C0501", e.getMessage());
+			throw new ThirdServiceException("SMS-ERROR-500", e.getMessage());
 		}
 	}
 
