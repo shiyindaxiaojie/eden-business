@@ -11,7 +11,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Data
 @ConfigurationProperties(prefix = "tencent.cloud.cos")
-public class COSProperties {
+public class QcloudCOSProperties {
 
 	private boolean enabled;
 

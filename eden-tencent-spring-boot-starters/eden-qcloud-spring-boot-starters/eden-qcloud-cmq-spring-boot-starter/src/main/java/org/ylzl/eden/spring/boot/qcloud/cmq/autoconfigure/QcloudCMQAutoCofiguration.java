@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.ylzl.eden.spring.boot.qcloud.cmq.env.CMQProperties;
+import org.ylzl.eden.spring.boot.qcloud.cmq.env.QcloudCMQProperties;
 
 /**
  * 腾讯云CMQ 自动配置
@@ -13,14 +13,14 @@ import org.ylzl.eden.spring.boot.qcloud.cmq.env.CMQProperties;
  * @since 2.4.13
  */
 @ConditionalOnProperty(value = "tencent.cloud.cmq.enabled", havingValue = "true", matchIfMissing = true)
-@EnableConfigurationProperties(CMQProperties.class)
+@EnableConfigurationProperties(QcloudCMQProperties.class)
 @Slf4j
 @Configuration
-public class CMQAutoCofiguration {
+public class QcloudCMQAutoCofiguration {
 
-	private final CMQProperties cmqProperties;
+	private final QcloudCMQProperties qcloudCmqProperties;
 
-	public CMQAutoCofiguration(CMQProperties cmqProperties) {
-		this.cmqProperties = cmqProperties;
+	public QcloudCMQAutoCofiguration(QcloudCMQProperties qcloudCmqProperties) {
+		this.qcloudCmqProperties = qcloudCmqProperties;
 	}
 }

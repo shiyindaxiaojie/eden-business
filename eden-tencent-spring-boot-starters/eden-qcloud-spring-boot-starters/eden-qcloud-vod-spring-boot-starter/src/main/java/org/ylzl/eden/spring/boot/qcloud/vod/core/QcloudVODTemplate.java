@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
-import org.ylzl.eden.spring.boot.qcloud.vod.config.VODConfig;
+import org.ylzl.eden.spring.boot.qcloud.vod.config.QcloudVODConfig;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -23,19 +23,19 @@ import java.util.Random;
  * @since 2021-06-17
  */
 @Slf4j
-public class VODTemplate implements InitializingBean {
+public class QcloudVODTemplate implements InitializingBean {
 
-	private final VODConfig vodConfig;
+	private final QcloudVODConfig qcloudVodConfig;
 	@Getter
 	private VodUploadClient vodUploadClient;
 
-	public VODTemplate(VODConfig vodConfig) {
-		this.vodConfig = vodConfig;
+	public QcloudVODTemplate(QcloudVODConfig qcloudVodConfig) {
+		this.qcloudVodConfig = qcloudVodConfig;
 	}
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		vodUploadClient = new VodUploadClient(vodConfig.getSecretId(), vodConfig.getSecretKey());
+		vodUploadClient = new VodUploadClient(qcloudVodConfig.getSecretId(), qcloudVodConfig.getSecretKey());
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class VODTemplate implements InitializingBean {
 		if (StringUtils.isNotBlank(coverFilePath)) {
 			request.setCoverFilePath(coverFilePath);
 		}
-		return vodUploadClient.upload(vodConfig.getRegion(), request);
+		return vodUploadClient.upload(qcloudVodConfig.getRegion(), request);
 	}
 
 	/**
@@ -75,11 +75,11 @@ public class VODTemplate implements InitializingBean {
 	 */
 	public String getUploadSignature() throws Exception {
 		Signature sign = new Signature();
-		sign.setSecretId(vodConfig.getSecretId());
-		sign.setSecretKey(vodConfig.getSecretKey());
+		sign.setSecretId(qcloudVodConfig.getSecretId());
+		sign.setSecretKey(qcloudVodConfig.getSecretKey());
 		sign.setCurrentTime(System.currentTimeMillis() / 1000);
 		sign.setRandom(new Random().nextInt(Integer.MAX_VALUE));
-		sign.setSignValidDuration(vodConfig.getShortignValidDuration());
+		sign.setSignValidDuration(qcloudVodConfig.getShortignValidDuration());
 		return sign.getUploadSignature();
 	}
 

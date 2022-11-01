@@ -2,7 +2,6 @@ package org.ylzl.eden.spring.boot.qcloud.sms.env;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.ylzl.eden.spring.boot.qcloud.sms.config.QcloudSmsConfig;
 
 /**
  * 腾讯云短信配置
@@ -20,5 +19,11 @@ public class QcloudSmsProperties {
 
 	private boolean enabled;
 
-	private QcloudSmsConfig sms;
+	private String accessKey;
+
+	private String secretKey;
+
+	private String smsSdkAppId;
+
+	private String region;
 }

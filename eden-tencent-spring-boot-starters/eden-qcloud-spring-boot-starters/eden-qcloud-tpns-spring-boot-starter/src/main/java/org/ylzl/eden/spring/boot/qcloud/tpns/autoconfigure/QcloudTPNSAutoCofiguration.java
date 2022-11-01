@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.ylzl.eden.spring.boot.qcloud.tpns.env.TPNSProperties;
+import org.ylzl.eden.spring.boot.qcloud.tpns.env.QcloudTPNSProperties;
 
 /**
  * 腾讯云TPNS 自动配置
@@ -13,14 +13,14 @@ import org.ylzl.eden.spring.boot.qcloud.tpns.env.TPNSProperties;
  * @since 2.4.13
  */
 @ConditionalOnProperty(value = "tencent.cloud.tpns.enabled", havingValue = "true", matchIfMissing = true)
-@EnableConfigurationProperties(TPNSProperties.class)
+@EnableConfigurationProperties(QcloudTPNSProperties.class)
 @Slf4j
 @Configuration
-public class TPNSAutoCofiguration {
+public class QcloudTPNSAutoCofiguration {
 
-	private final TPNSProperties tpnsProperties;
+	private final QcloudTPNSProperties qcloudTPNSProperties;
 
-	public TPNSAutoCofiguration(TPNSProperties tpnsProperties) {
-		this.tpnsProperties = tpnsProperties;
+	public QcloudTPNSAutoCofiguration(QcloudTPNSProperties qcloudTPNSProperties) {
+		this.qcloudTPNSProperties = qcloudTPNSProperties;
 	}
 }

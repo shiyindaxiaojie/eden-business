@@ -1,25 +1,21 @@
-package org.ylzl.eden.spring.boot.qcloud.vod.env;
+package org.ylzl.eden.spring.boot.qcloud.cmq.env;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * 腾讯云VOD 配置
+ * CMQ 配置
  *
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
- * @since 2021-06-17
- **/
+ * @since 2.4.13
+ */
 @Data
-@ConfigurationProperties(prefix = "tencent.cloud.vod")
-public class VODProperties {
+@ConfigurationProperties(prefix = "tencent.cloud.cmq")
+public class QcloudCMQProperties {
 
 	private boolean enabled;
 
 	private String secretId;
 
 	private String secretKey;
-
-	private String region;
-
-	private int shortignValidDuration;
 }

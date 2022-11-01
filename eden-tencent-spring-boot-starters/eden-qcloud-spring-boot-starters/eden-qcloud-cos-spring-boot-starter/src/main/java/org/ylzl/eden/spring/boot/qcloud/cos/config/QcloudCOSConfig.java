@@ -1,10 +1,10 @@
-package org.ylzl.eden.spring.boot.qcloud.vod.config;
+package org.ylzl.eden.spring.boot.qcloud.cos.config;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 /**
- * VOD 配置
+ * COS 配置
  *
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
  * @since 2021-12-27
@@ -15,7 +15,7 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode
 @SuperBuilder
 @ToString
-public class VODConfig {
+public class QcloudCOSConfig {
 
 	private String secretId;
 
@@ -23,5 +23,5 @@ public class VODConfig {
 
 	private String region;
 
-	private Integer shortignValidDuration;
+	private String bucketName;
 }

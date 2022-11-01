@@ -13,7 +13,7 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.ylzl.eden.commons.collections.CollectionUtils;
 import org.ylzl.eden.commons.lang.StringUtils;
-import org.ylzl.eden.spring.boot.qcloud.cos.config.COSConfig;
+import org.ylzl.eden.spring.boot.qcloud.cos.config.QcloudCOSConfig;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,11 +29,11 @@ import java.util.List;
  */
 @RequiredArgsConstructor
 @Slf4j
-public class COSTemplate implements InitializingBean, DisposableBean {
+public class QcloudCOSTemplate implements InitializingBean, DisposableBean {
 
 	private static final String COS_OBJECT_ACCESS_FORMAT = "http://{0}.cos.{1}.myqcloud.com/{2}";
 
-	private final COSConfig cosConfig;
+	private final QcloudCOSConfig qcloudCosConfig;
 
 	@Getter
 	private COSClient cosClient;
@@ -46,8 +46,8 @@ public class COSTemplate implements InitializingBean, DisposableBean {
 	@Override
 	public void afterPropertiesSet() {
 		COSCredentials cred =
-			new BasicCOSCredentials(cosConfig.getSecretId(), cosConfig.getSecretKey());
-		Region region = new Region(cosConfig.getRegion());
+			new BasicCOSCredentials(qcloudCosConfig.getSecretId(), qcloudCosConfig.getSecretKey());
+		Region region = new Region(qcloudCosConfig.getRegion());
 		ClientConfig clientConfig = new ClientConfig(region);
 		clientConfig.setConnectionTimeout(10000);
 		cosClient = new COSClient(cred, clientConfig);
@@ -112,7 +112,7 @@ public class COSTemplate implements InitializingBean, DisposableBean {
 	 * @return PutObjectResult
 	 */
 	public PutObjectResult putObject(String key, File uploadfile) {
-		return putObject(cosConfig.getBucketName(), key, uploadfile);
+		return putObject(qcloudCosConfig.getBucketName(), key, uploadfile);
 	}
 
 	/**
@@ -142,7 +142,7 @@ public class COSTemplate implements InitializingBean, DisposableBean {
 	 * @param key 对象键，指定文件上传到 COS 上的路径
 	 */
 	public void deleteObject(String key) {
-		cosClient.deleteObject(cosConfig.getBucketName(), key);
+		cosClient.deleteObject(qcloudCosConfig.getBucketName(), key);
 	}
 
 	/**
@@ -163,7 +163,7 @@ public class COSTemplate implements InitializingBean, DisposableBean {
 	 * @return
 	 */
 	public ObjectMetadata getObject(String key, File downloadFile) {
-		return this.getObject(cosConfig.getBucketName(), key, downloadFile);
+		return this.getObject(qcloudCosConfig.getBucketName(), key, downloadFile);
 	}
 
 	/**
@@ -187,7 +187,7 @@ public class COSTemplate implements InitializingBean, DisposableBean {
 	 * @return 下载对象的 CRC64
 	 */
 	public String getObject(String key, boolean useTrafficLimit) throws IOException {
-		return this.getObject(cosConfig.getBucketName(), key, useTrafficLimit);
+		return this.getObject(qcloudCosConfig.getBucketName(), key, useTrafficLimit);
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class COSTemplate implements InitializingBean, DisposableBean {
 	 * @return 对象（文件）访问 URL
 	 */
 	public String getObjectUrl(String key) {
-		return this.getObjectUrl(cosConfig.getBucketName(), key);
+		return this.getObjectUrl(qcloudCosConfig.getBucketName(), key);
 	}
 
 	/**
@@ -228,7 +228,7 @@ public class COSTemplate implements InitializingBean, DisposableBean {
 	 * @return 对象（文件）访问 URL
 	 */
 	public String getObjectUrl(String bucketName, String key) {
-		return MessageFormat.format(COS_OBJECT_ACCESS_FORMAT, bucketName, cosConfig.getRegion(), key);
+		return MessageFormat.format(COS_OBJECT_ACCESS_FORMAT, bucketName, qcloudCosConfig.getRegion(), key);
 	}
 
 	/**
@@ -239,8 +239,8 @@ public class COSTemplate implements InitializingBean, DisposableBean {
 	public String getObjectBaseUrl() {
 		return MessageFormat.format(
 			COS_OBJECT_ACCESS_FORMAT,
-			cosConfig.getBucketName(),
-			cosConfig.getRegion(),
+			qcloudCosConfig.getBucketName(),
+			qcloudCosConfig.getRegion(),
 			StringUtils.EMPTY);
 	}
 }

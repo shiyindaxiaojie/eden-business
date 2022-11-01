@@ -9,8 +9,9 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.ylzl.eden.common.sms.core.SmsType;
+import org.ylzl.eden.common.sms.autoconfigure.SmsBeanType;
 import org.ylzl.eden.spring.boot.qcloud.sms.core.QcloudSmsTemplate;
+import org.ylzl.eden.spring.boot.qcloud.sms.env.QcloudSmsConvertor;
 import org.ylzl.eden.spring.boot.qcloud.sms.env.QcloudSmsProperties;
 
 /**
@@ -32,9 +33,9 @@ public class QcloudSmsAutoCofiguration {
 	private final QcloudSmsProperties qcloudSmsProperties;
 
 	@ConditionalOnMissingBean
-	@Bean(SmsType.QCLOUD_SMS_TEMPLATE)
+	@Bean(SmsBeanType.QCLOUD_SMS_TEMPLATE)
 	public QcloudSmsTemplate qcloudSmsTemplate() {
 		log.info(AUTOWIRED_QCLOUD_SMS_TEMPLATE);
-		return new QcloudSmsTemplate(qcloudSmsProperties.getSms());
+		return new QcloudSmsTemplate(QcloudSmsConvertor.INSTANCE.toConfig(qcloudSmsProperties));
 	}
 }

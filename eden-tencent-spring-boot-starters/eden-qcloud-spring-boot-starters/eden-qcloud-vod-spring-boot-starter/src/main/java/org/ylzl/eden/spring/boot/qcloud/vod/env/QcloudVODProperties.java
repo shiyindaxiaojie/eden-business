@@ -1,21 +1,25 @@
-package org.ylzl.eden.spring.boot.qcloud.tms.env;
+package org.ylzl.eden.spring.boot.qcloud.vod.env;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * TMS 配置
+ * 腾讯云VOD 配置
  *
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
- * @since 2.4.13
- */
+ * @since 2021-06-17
+ **/
 @Data
-@ConfigurationProperties(prefix = "tencent.cloud.tms")
-public class TMSProperties {
+@ConfigurationProperties(prefix = "tencent.cloud.vod")
+public class QcloudVODProperties {
 
 	private boolean enabled;
 
 	private String secretId;
 
 	private String secretKey;
+
+	private String region;
+
+	private int shortignValidDuration;
 }
