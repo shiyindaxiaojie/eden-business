@@ -1,15 +1,38 @@
 @startuml
 
-[eden-aliyun-spring-boot-starters] --> [eden-business]
-[eden-aliyun-sms-spring-boot-starter] --> [eden-aliyun-spring-boot-starters]
-[eden-qcloud-spring-boot-starters] --> [eden-business]
-[eden-cmq-spring-boot-starter] --> [eden-qcloud-spring-boot-starters]
-[eden-cos-spring-boot-starter] --> [eden-qcloud-spring-boot-starters]
-[eden-tms-spring-boot-starter] --> [eden-qcloud-spring-boot-starters]
-[eden-tpns-spring-boot-starter] --> [eden-qcloud-spring-boot-starters]
-[eden-vod-spring-boot-starter] --> [eden-qcloud-spring-boot-starters]
-[eden-emay-spring-boot-starters] --> [eden-business]
-[eden-emay-sms-spring-boot-starter] --> [eden-emay-spring-boot-starters]
+[eden-business] <<商业化组件>>
+[eden-alibaba-spring-boot-starters] <<阿里巴巴组件>>
+[eden-aliyun-spring-boot-starters] <<阿里云组件>>
+[eden-alipay-spring-boot-starters] <<支付宝组件>>
+[eden-tencent-spring-boot-starters] <<腾讯组件>>
+[eden-qcloud-spring-boot-starters] <<腾讯云组件>>
+[eden-wechat-spring-boot-starters] <<微信组件>>
+[eden-montnets-spring-boot-starters] <<梦网组件>>
+[eden-emay-spring-boot-starters] <<亿美组件>>
+
+[eden-alibaba-spring-boot-starters] --> [eden-business]
+[eden-aliyun-spring-boot-starters] --> [eden-alibaba-spring-boot-starters]
+[eden-alipay-spring-boot-starters] --> [eden-alibaba-spring-boot-starters]
+
+[eden-tencent-spring-boot-starters] --> [eden-business]
+[eden-qcloud-spring-boot-starters] --> [eden-tencent-spring-boot-starters]
+[eden-wechat-spring-boot-starters] --> [eden-tencent-spring-boot-starters]
+
 [eden-montnets-spring-boot-starters] --> [eden-business]
-[eden-montnets-sms-spring-boot-starter] --> [eden-montnets-spring-boot-starters]
+
+[eden-emay-spring-boot-starters] --> [eden-business]
+
+skinparam component {
+ 	backgroundColor<<阿里巴巴组件>> SkyBlue
+    backgroundColor<<阿里云组件>> SkyBlue
+    backgroundColor<<支付宝组件>> SkyBlue
+
+    backgroundColor<<腾讯组件>> PaleGreen
+    backgroundColor<<腾讯云组件>> PaleGreen
+    backgroundColor<<微信组件>> PaleGreen
+
+	backgroundColor<<梦网组件>> Pink
+
+	backgroundColor<<亿美组件>> Khaki
+}
 @enduml
