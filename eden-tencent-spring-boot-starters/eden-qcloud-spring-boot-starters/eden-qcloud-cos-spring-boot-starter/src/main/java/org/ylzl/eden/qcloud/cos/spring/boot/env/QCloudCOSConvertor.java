@@ -4,7 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
-import org.ylzl.eden.qcloud.cos.config.QCloudCOSConfig;
+import org.ylzl.eden.qcloud.cos.core.config.QCloudCOSConfig;
 
 /**
  * COS 配置转换器

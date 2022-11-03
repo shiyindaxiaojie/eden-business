@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.ylzl.eden.qcloud.vod.spring.boot.env.QCloudVODProperties;
-import org.ylzl.eden.qcloud.vod.config.QCloudVODConfig;
+import org.ylzl.eden.qcloud.vod.core.config.QCloudVODConfig;
 import org.ylzl.eden.qcloud.vod.core.QCloudVODTemplate;
 
 /**

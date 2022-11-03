@@ -4,7 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
-import org.ylzl.eden.montnets.sms.config.MontnetsSmsConfig;
+import org.ylzl.eden.montnets.sms.core.config.MontnetsSmsConfig;
 
 /**
  * 梦网短信配置转换器

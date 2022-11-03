@@ -15,7 +15,7 @@ import org.ylzl.eden.common.sms.single.SingleSendSmsRequest;
 import org.ylzl.eden.common.sms.single.SingleSendSmsResponse;
 import org.ylzl.eden.common.sms.template.SendTemplateSmsRequest;
 import org.ylzl.eden.common.sms.template.SendTemplateSmsResponse;
-import org.ylzl.eden.qcloud.sms.config.QCloudSmsConfig;
+import org.ylzl.eden.qcloud.sms.core.config.QCloudSmsConfig;
 import org.ylzl.eden.spring.framework.error.ClientAssert;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
 

@@ -13,7 +13,7 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.ylzl.eden.commons.collections.CollectionUtils;
 import org.ylzl.eden.commons.lang.StringUtils;
-import org.ylzl.eden.qcloud.cos.config.QCloudCOSConfig;
+import org.ylzl.eden.qcloud.cos.core.config.QCloudCOSConfig;
 
 import java.io.File;
 import java.io.IOException;

@@ -4,7 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
-import org.ylzl.eden.qcloud.vod.config.QCloudVODConfig;
+import org.ylzl.eden.qcloud.vod.core.config.QCloudVODConfig;
 
 /**
  * VOD 配置转换器

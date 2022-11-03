@@ -19,7 +19,7 @@ import org.ylzl.eden.common.sms.single.SingleSendSmsRequest;
 import org.ylzl.eden.common.sms.single.SingleSendSmsResponse;
 import org.ylzl.eden.common.sms.template.SendTemplateSmsRequest;
 import org.ylzl.eden.common.sms.template.SendTemplateSmsResponse;
-import org.ylzl.eden.montnets.sms.config.MontnetsSmsConfig;
+import org.ylzl.eden.montnets.sms.core.config.MontnetsSmsConfig;
 import org.ylzl.eden.spring.framework.error.ClientAssert;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
 import org.ylzl.eden.spring.framework.error.util.AssertEnhancer;

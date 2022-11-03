@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
-import org.ylzl.eden.qcloud.vod.config.QCloudVODConfig;
+import org.ylzl.eden.qcloud.vod.core.config.QCloudVODConfig;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;

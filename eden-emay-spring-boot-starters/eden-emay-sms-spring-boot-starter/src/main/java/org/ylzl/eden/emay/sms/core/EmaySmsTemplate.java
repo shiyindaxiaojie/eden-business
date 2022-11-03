@@ -22,7 +22,7 @@ import org.ylzl.eden.common.sms.single.SingleSendSmsRequest;
 import org.ylzl.eden.common.sms.single.SingleSendSmsResponse;
 import org.ylzl.eden.common.sms.template.SendTemplateSmsRequest;
 import org.ylzl.eden.common.sms.template.SendTemplateSmsResponse;
-import org.ylzl.eden.emay.sms.config.EmaySmsConfig;
+import org.ylzl.eden.emay.sms.core.config.EmaySmsConfig;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
 
 /**
