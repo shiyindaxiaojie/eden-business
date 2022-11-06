@@ -1,10 +1,10 @@
-package org.ylzl.eden.emay.sms.core.config;
+package org.ylzl.eden.qcloud.sms.config;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 /**
- * 亿美短信配置
+ * 腾讯云短信配置
  *
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
  * @since 2.4.13
@@ -15,25 +15,13 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode
 @SuperBuilder
 @ToString
-public class EmaySmsConfig {
+public class QCloudSmsConfig {
 
-	/**
-	 * 应用ID
-	 */
-	private String appId;
+	private String accessKey;
 
-	/**
-	 * 密钥
-	 */
 	private String secretKey;
 
-	/**
-	 * 地址
-	 */
-	private String ip;
+	private String smsSdkAppId;
 
-	/**
-	 * 端口
-	 */
-	private int port;
+	private String region;
 }

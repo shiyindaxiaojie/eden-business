@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.ylzl.eden.aliyun.sms.core.AliyunSmsTemplate;
-import org.ylzl.eden.common.sms.autoconfigure.SmsBeanType;
+import org.ylzl.eden.common.sms.spring.boot.autoconfigure.factory.SmsBeanType;
 
 /**
  * 阿里云短信自动配置

@@ -6,18 +6,18 @@ import com.tencentcloudapi.sms.v20210111.SmsClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
-import org.ylzl.eden.common.sms.SmsTemplate;
 import org.ylzl.eden.common.sms.batch.BatchSendSmsRequest;
 import org.ylzl.eden.common.sms.batch.BatchSendSmsResponse;
+import org.ylzl.eden.common.sms.core.SmsTemplate;
 import org.ylzl.eden.common.sms.multi.MultiSendSmsRequest;
 import org.ylzl.eden.common.sms.multi.MultiSendSmsResponse;
 import org.ylzl.eden.common.sms.single.SingleSendSmsRequest;
 import org.ylzl.eden.common.sms.single.SingleSendSmsResponse;
 import org.ylzl.eden.common.sms.template.SendTemplateSmsRequest;
 import org.ylzl.eden.common.sms.template.SendTemplateSmsResponse;
-import org.ylzl.eden.qcloud.sms.core.config.QCloudSmsConfig;
-import org.ylzl.eden.spring.framework.error.ClientAssert;
+import org.ylzl.eden.qcloud.sms.config.QCloudSmsConfig;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
+import org.ylzl.eden.spring.framework.error.util.AssertUtils;
 
 import java.util.Collection;
 import java.util.Map;
@@ -55,11 +55,11 @@ public class QCloudSmsTemplate implements SmsTemplate, InitializingBean {
 			new com.tencentcloudapi.sms.v20210111.models.SendSmsRequest();
 
 		Collection<String> phoneNumbers = request.getPhoneNumbers();
-		ClientAssert.notNull(phoneNumbers,"BAD-REQUEST-400", "发送腾讯云短信的接收号码不能为空");
+		AssertUtils.notNull(phoneNumbers,"BAD-REQUEST-400", "发送腾讯云短信的接收号码不能为空");
 		sendSmsRequest.setPhoneNumberSet(phoneNumbers.toArray(new String[0]));
 
 		Map<String, String> templateParam = request.getTemplateParam();
-		ClientAssert.notNull(templateParam,"BAD-REQUEST-400", "发送腾讯云短信的模板参数不能为空");
+		AssertUtils.notNull(templateParam,"BAD-REQUEST-400", "发送腾讯云短信的模板参数不能为空");
 		sendSmsRequest.setTemplateParamSet(templateParam.keySet().toArray(new String[0]));
 		sendSmsRequest.setTemplateId(request.getTemplateCode());
 

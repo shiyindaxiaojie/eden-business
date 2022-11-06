@@ -1,4 +1,4 @@
-package org.ylzl.eden.montnets.sms.core.config;
+package org.ylzl.eden.montnets.sms.config;
 
 import com.montnets.mwgate.common.ContentEncodeEnum;
 import com.montnets.mwgate.common.ContentEncryptEnum;

@@ -4,7 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
-import org.ylzl.eden.emay.sms.core.config.EmaySmsConfig;
+import org.ylzl.eden.emay.sms.config.EmaySmsConfig;
 
 /**
  * 亿美短信配置转换器

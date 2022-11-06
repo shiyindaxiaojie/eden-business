@@ -6,7 +6,7 @@ import com.montnets.mwgate.common.PwdEncryptEnum;
 import com.montnets.mwgate.common.SecretKeyEnum;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.ylzl.eden.montnets.sms.core.config.MontnetsSmsConfig;
+import org.ylzl.eden.montnets.sms.config.MontnetsSmsConfig;
 
 import java.util.List;
 

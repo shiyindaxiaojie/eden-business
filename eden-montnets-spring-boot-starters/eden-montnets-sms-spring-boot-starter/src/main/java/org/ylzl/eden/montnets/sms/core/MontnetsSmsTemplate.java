@@ -9,20 +9,19 @@ import com.montnets.mwgate.smsutil.SmsSendConn;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
-import org.ylzl.eden.common.sms.SmsModel;
-import org.ylzl.eden.common.sms.SmsTemplate;
 import org.ylzl.eden.common.sms.batch.BatchSendSmsRequest;
 import org.ylzl.eden.common.sms.batch.BatchSendSmsResponse;
+import org.ylzl.eden.common.sms.core.SmsTemplate;
+import org.ylzl.eden.common.sms.model.SmsModel;
 import org.ylzl.eden.common.sms.multi.MultiSendSmsRequest;
 import org.ylzl.eden.common.sms.multi.MultiSendSmsResponse;
 import org.ylzl.eden.common.sms.single.SingleSendSmsRequest;
 import org.ylzl.eden.common.sms.single.SingleSendSmsResponse;
 import org.ylzl.eden.common.sms.template.SendTemplateSmsRequest;
 import org.ylzl.eden.common.sms.template.SendTemplateSmsResponse;
-import org.ylzl.eden.montnets.sms.core.config.MontnetsSmsConfig;
-import org.ylzl.eden.spring.framework.error.ClientAssert;
+import org.ylzl.eden.montnets.sms.config.MontnetsSmsConfig;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
-import org.ylzl.eden.spring.framework.error.util.AssertEnhancer;
+import org.ylzl.eden.spring.framework.error.util.AssertUtils;
 
 import java.util.Collection;
 import java.util.List;
@@ -42,7 +41,7 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 	private SmsSendConn smsSendConn;
 
 	@Override
-	public void afterPropertiesSet() throws Exception {
+	public void afterPropertiesSet() {
 		populateProperties();
 		initAccountInfo();
 		smsSendConn = new SmsSendConn(montnetsSmsConfig.isKeepAlive());
@@ -74,7 +73,7 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 	 * 初始化账号
 	 */
 	private void initAccountInfo() {
-		AssertEnhancer.notEmpty(montnetsSmsConfig.getAccountInfo(), "请求梦网的域名不能为空，请联系联系梦网客服进行获取。");
+		AssertUtils.notEmpty(montnetsSmsConfig.getAccountInfo(), "请求梦网的域名不能为空，请联系联系梦网客服进行获取。");
 		int size = montnetsSmsConfig.getAccountInfo().size();
 		String address1 = montnetsSmsConfig.getAccountInfo().get(0);
 		String address2 = size > 1? montnetsSmsConfig.getAccountInfo().get(1) : null;
@@ -84,7 +83,7 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 			String[] split = accountInfo.split("@@");
 			int result = ConfigManager.setAccountInfo(split[0], split[1], 1, address1, address2, address3, address4);
 			// 判断返回结果（0：成功，1：失败）
-			AssertEnhancer.state(result == 0, "设置用户账号信息失败，错误码：" + result);
+			AssertUtils.state(result == 0, "设置用户账号信息失败，错误码：" + result);
 		}
 	}
 
@@ -150,7 +149,7 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 		Collection<SmsModel> smsModelList = request.getSmsModelList();
 		List<MultiMt> multixMts = Lists.newArrayListWithCapacity(smsModelList.size());
 		for (SmsModel model : smsModelList) {
-			ClientAssert.notNull(model.getPhoneNumber(), "BAD-REQUEST-400", "发送梦网短信的接收号码不能为空");
+			AssertUtils.notNull(model.getPhoneNumber(), "BAD-REQUEST-400", "发送梦网短信的接收号码不能为空");
 			MultiMt multixMt = new MultiMt();
 			multixMt.setMobile(model.getPhoneNumber());
 			multixMt.setContent(model.getSmsContent());
