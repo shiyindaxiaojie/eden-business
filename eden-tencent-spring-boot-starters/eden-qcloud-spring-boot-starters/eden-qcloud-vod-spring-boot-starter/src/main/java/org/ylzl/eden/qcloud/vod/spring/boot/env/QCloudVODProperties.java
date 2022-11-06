@@ -1,0 +1,25 @@
+package org.ylzl.eden.qcloud.vod.spring.boot.env;
+
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
+/**
+ * 腾讯云VOD 配置
+ *
+ * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
+ * @since 2021-06-17
+ **/
+@Data
+@ConfigurationProperties(prefix = "tencent.cloud.vod")
+public class QCloudVODProperties {
+
+	private boolean enabled;
+
+	private String secretId;
+
+	private String secretKey;
+
+	private String region;
+
+	private int shortignValidDuration;
+}

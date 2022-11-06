@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.ylzl</groupId>
 		<artifactId>eden-aliyun-spring-boot-starters</artifactId>
-		<version>2.4.13.20221030</version>
+		<version>2.4.13.20221103</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>eden-aliyun-sms-spring-boot-starter</artifactId>
@@ -16,17 +16,17 @@
 	<description>Spring Boot Starter For Aliyun SMS</description>
 
 	<dependencies>
-		<!-- 开发框架 -->
-		<dependency>
-			<groupId>org.ylzl</groupId>
-			<artifactId>eden-common-sms</artifactId>
-		</dependency>
-
 		<!-- 开发工具 -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+		</dependency>
+
+		<!-- 通用短信组件 -->
+		<dependency>
+			<groupId>org.ylzl</groupId>
+			<artifactId>eden-common-sms-spring-boot-starter</artifactId>
 		</dependency>
 
 		<!-- 阿里云短信组件 -->
