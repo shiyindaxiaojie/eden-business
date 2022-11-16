@@ -7,11 +7,11 @@
 	<parent>
 		<groupId>org.ylzl</groupId>
 		<artifactId>eden-parent</artifactId>
-		<version>2.4.13.20221107</version>
+		<version>2.4.13.20221116</version>
 		<relativePath>../eden-architect/eden-components/eden-parent/pom.xml</relativePath>
 	</parent>
 	<artifactId>eden-business</artifactId>
-	<version>2.4.13.20221107</version>
+	<version>2.4.13.20221116</version>
 	<packaging>pom</packaging>
 	<name>eden-business</name>
 	<description>商业组件</description>
@@ -107,53 +107,53 @@
 			<dependency>
 				<groupId>org.ylzl</groupId>
 				<artifactId>eden-aliyun-sms-spring-boot-starter</artifactId>
-				<version>2.4.13.20221107</version>
+				<version>2.4.13.20221116</version>
 			</dependency>
 
 			<!-- QCloud Spring Boot Starter -->
 			<dependency>
 				<groupId>org.ylzl</groupId>
 				<artifactId>eden-qcloud-spring-boot-starters</artifactId>
-				<version>2.4.13.20221107</version>
+				<version>2.4.13.20221116</version>
 			</dependency>
 			<dependency>
 				<groupId>org.ylzl</groupId>
 				<artifactId>eden-qcloud-cmq-spring-boot-starter</artifactId>
-				<version>2.4.13.20221107</version>
+				<version>2.4.13.20221116</version>
 			</dependency>
 			<dependency>
 				<groupId>org.ylzl</groupId>
 				<artifactId>eden-qcloud-cos-spring-boot-starter</artifactId>
-				<version>2.4.13.20221107</version>
+				<version>2.4.13.20221116</version>
 			</dependency>
 			<dependency>
 				<groupId>org.ylzl</groupId>
 				<artifactId>eden-qcloud-tms-spring-boot-starter</artifactId>
-				<version>2.4.13.20221107</version>
+				<version>2.4.13.20221116</version>
 			</dependency>
 			<dependency>
 				<groupId>org.ylzl</groupId>
 				<artifactId>eden-qcloud-tpns-spring-boot-starter</artifactId>
-				<version>2.4.13.20221107</version>
+				<version>2.4.13.20221116</version>
 			</dependency>
 			<dependency>
 				<groupId>org.ylzl</groupId>
 				<artifactId>eden-qcloud-vod-spring-boot-starter</artifactId>
-				<version>2.4.13.20221107</version>
+				<version>2.4.13.20221116</version>
 			</dependency>
 
 			<!-- Emay Spring Boot Starter -->
 			<dependency>
 				<groupId>org.ylzl</groupId>
 				<artifactId>eden-emay-sms-spring-boot-starter</artifactId>
-				<version>2.4.13.20221107</version>
+				<version>2.4.13.20221116</version>
 			</dependency>
 
 			<!-- Montnets Spring Boot Starter -->
 			<dependency>
 				<groupId>org.ylzl</groupId>
 				<artifactId>eden-montnets-sms-spring-boot-starter</artifactId>
-				<version>2.4.13.20221107</version>
+				<version>2.4.13.20221116</version>
 			</dependency>
 
 			<!-- 阿里云组件 -->
