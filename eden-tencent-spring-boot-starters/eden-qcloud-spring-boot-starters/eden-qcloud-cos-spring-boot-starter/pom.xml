@@ -26,14 +26,14 @@
 			<artifactId>eden-spring-integration</artifactId>
 		</dependency>
 
-		<!-- 开发组件 -->
+		<!-- 开发工具 -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
 
-		<!-- COS 组件 -->
+		<!-- COS -->
 		<dependency>
 			<groupId>com.qcloud</groupId>
 			<artifactId>cos_api</artifactId>

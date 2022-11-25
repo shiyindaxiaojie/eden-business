@@ -33,7 +33,7 @@
 			<optional>true</optional>
 		</dependency>
 
-		<!-- VOD 组件 -->
+		<!-- VOD -->
 		<dependency>
 			<groupId>com.qcloud</groupId>
 			<artifactId>vod_api</artifactId>

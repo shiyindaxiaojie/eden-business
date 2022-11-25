@@ -29,7 +29,7 @@
 			<optional>true</optional>
 		</dependency>
 
-		<!-- CMQ 组件 -->
+		<!-- CMQ -->
 		<dependency>
 			<groupId>com.qcloud</groupId>
 			<artifactId>qcloud-java-sdk</artifactId>
