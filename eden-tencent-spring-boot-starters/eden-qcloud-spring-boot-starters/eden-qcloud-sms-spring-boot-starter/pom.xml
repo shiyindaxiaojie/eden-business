@@ -26,7 +26,7 @@
 		<!-- 通用短信组件 -->
 		<dependency>
 			<groupId>org.ylzl</groupId>
-			<artifactId>eden-common-sms-spring-boot-starter</artifactId>
+			<artifactId>eden-dynamic-sms-spring-boot-starter</artifactId>
 		</dependency>
 
 		<!-- 腾讯云短信组件 -->

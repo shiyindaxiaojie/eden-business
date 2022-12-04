@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.ylzl.eden.common.sms.spring.boot.autoconfigure.factory.SmsBeanType;
+import org.ylzl.eden.dynamic.sms.spring.boot.autoconfigure.factory.SmsBeanType;
 import org.ylzl.eden.emay.sms.core.EmaySmsTemplate;
 import org.ylzl.eden.emay.sms.spring.boot.env.EmaySmsConvertor;
 import org.ylzl.eden.emay.sms.spring.boot.env.EmaySmsProperties;
