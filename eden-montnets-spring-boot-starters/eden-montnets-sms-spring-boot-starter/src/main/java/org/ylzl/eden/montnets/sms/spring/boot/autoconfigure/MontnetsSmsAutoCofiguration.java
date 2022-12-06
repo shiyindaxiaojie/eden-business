@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.ylzl.eden.dynamic.sms.spring.boot.autoconfigure.factory.SmsBeanType;
+import org.ylzl.eden.dynamic.sms.spring.boot.support.SmsBeanNames;
 import org.ylzl.eden.montnets.sms.core.MontnetsSmsTemplate;
 import org.ylzl.eden.montnets.sms.spring.boot.env.MontnetsSmsConvertor;
 import org.ylzl.eden.montnets.sms.spring.boot.env.MontnetsSmsProperties;
@@ -33,7 +33,7 @@ public class MontnetsSmsAutoCofiguration {
 	private final MontnetsSmsProperties montnetsSmsProperties;
 
 	@ConditionalOnMissingBean
-	@Bean(SmsBeanType.MONTNETS_SMS_TEMPLATE)
+	@Bean(SmsBeanNames.MONTNETS_SMS_TEMPLATE)
 	public MontnetsSmsTemplate montnetsSmsTemplate() {
 		log.info(AUTOWIRED_MONTNETS_SMS_TEMPLATE);
 		return new MontnetsSmsTemplate(MontnetsSmsConvertor.INSTANCE.toConfig(montnetsSmsProperties));

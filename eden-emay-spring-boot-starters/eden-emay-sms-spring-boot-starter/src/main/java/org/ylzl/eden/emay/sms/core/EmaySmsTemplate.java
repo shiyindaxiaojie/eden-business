@@ -12,16 +12,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
-import org.ylzl.eden.dynamic.sms.model.SmsModel;
+import org.ylzl.eden.dynamic.sms.model.Sms;
 import org.ylzl.eden.dynamic.sms.core.SmsTemplate;
-import org.ylzl.eden.dynamic.sms.batch.BatchSendSmsRequest;
-import org.ylzl.eden.dynamic.sms.batch.BatchSendSmsResponse;
-import org.ylzl.eden.dynamic.sms.multi.MultiSendSmsRequest;
-import org.ylzl.eden.dynamic.sms.multi.MultiSendSmsResponse;
-import org.ylzl.eden.dynamic.sms.single.SingleSendSmsRequest;
-import org.ylzl.eden.dynamic.sms.single.SingleSendSmsResponse;
-import org.ylzl.eden.dynamic.sms.template.SendTemplateSmsRequest;
-import org.ylzl.eden.dynamic.sms.template.SendTemplateSmsResponse;
+import org.ylzl.eden.dynamic.sms.model.batch.BatchSendSmsRequest;
+import org.ylzl.eden.dynamic.sms.model.batch.BatchSendSmsResponse;
+import org.ylzl.eden.dynamic.sms.model.multi.MultiSendSmsRequest;
+import org.ylzl.eden.dynamic.sms.model.multi.MultiSendSmsResponse;
+import org.ylzl.eden.dynamic.sms.model.single.SingleSendSmsRequest;
+import org.ylzl.eden.dynamic.sms.model.single.SingleSendSmsResponse;
+import org.ylzl.eden.dynamic.sms.model.template.SendTemplateSmsRequest;
+import org.ylzl.eden.dynamic.sms.model.template.SendTemplateSmsResponse;
 import org.ylzl.eden.emay.sms.config.EmaySmsConfig;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
 
@@ -81,7 +81,7 @@ public class EmaySmsTemplate implements SmsTemplate, InitializingBean {
 				.build();
 		} catch (Exception e) {
 			log.error("发起梦网单条短信请求失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("SMS-ERROR-500", e.getMessage());
+			throw new ThirdServiceException("SMS-SEND-500", e.getMessage());
 		}
 	}
 
@@ -119,7 +119,7 @@ public class EmaySmsTemplate implements SmsTemplate, InitializingBean {
 				.build();
 		} catch (Exception e) {
 			log.error("发起梦网相同内容群发请求失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("SMS-ERROR-500", e.getMessage());
+			throw new ThirdServiceException("SMS-SEND-500", e.getMessage());
 		}
 	}
 
@@ -134,12 +134,12 @@ public class EmaySmsTemplate implements SmsTemplate, InitializingBean {
 		log.debug("发起亿美个性化内容群发请求，参数：{}", request);
 		SmsPersonalityAllRequest smsPersonalityAllRequest = new SmsPersonalityAllRequest();
 
-		int size = request.getSmsModelList().size();
+		int size = request.getSmsList().size();
 		PersonalityParams[] personalityParams = new PersonalityParams[size];
 		for (int i = 0; i < size; i++) {
-			SmsModel smsModel = request.getSmsModelList().get(i);
-			personalityParams[i] = new PersonalityParams(smsModel.getCustomSmsId(),
-				smsModel.getPhoneNumber(), smsModel.getSmsContent(), smsModel.getExtendedCode(), smsModel.getTimerTime());
+			Sms sms = request.getSmsList().get(i);
+			personalityParams[i] = new PersonalityParams(sms.getCustomSmsId(),
+				sms.getPhoneNumber(), sms.getSmsContent(), sms.getExtendedCode(), sms.getTimerTime());
 		}
 		smsPersonalityAllRequest.setSmses(personalityParams);
 		try {
@@ -158,7 +158,7 @@ public class EmaySmsTemplate implements SmsTemplate, InitializingBean {
 				.build();
 		} catch (Exception e) {
 			log.error("发起梦网个性化内容群发请求失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("SMS-ERROR-500", e.getMessage());
+			throw new ThirdServiceException("SMS-SEND-500", e.getMessage());
 		}
 	}
 

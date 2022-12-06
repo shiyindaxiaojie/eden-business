@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.ylzl.eden.aliyun.sms.core.AliyunSmsTemplate;
-import org.ylzl.eden.dynamic.sms.spring.boot.autoconfigure.factory.SmsBeanType;
+import org.ylzl.eden.dynamic.sms.spring.boot.support.SmsBeanNames;
 
 /**
  * 阿里云短信自动配置
@@ -28,7 +28,7 @@ public class AliyunSmsAutoCofiguration {
 	private static final String AUTOWIRED_ALIYUN_SMS_TEMPLATE = "Autowired AliyunSmsTemplate";
 
 	@ConditionalOnMissingBean
-	@Bean(SmsBeanType.ALIYUN_SMS_TEMPLATE)
+	@Bean(SmsBeanNames.ALIYUN_SMS_TEMPLATE)
 	public AliyunSmsTemplate aliyunSmsTemplate(ISmsService smsService) {
 		log.info(AUTOWIRED_ALIYUN_SMS_TEMPLATE);
 		return new AliyunSmsTemplate(smsService);

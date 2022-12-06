@@ -9,16 +9,16 @@ import com.montnets.mwgate.smsutil.SmsSendConn;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
-import org.ylzl.eden.dynamic.sms.batch.BatchSendSmsRequest;
-import org.ylzl.eden.dynamic.sms.batch.BatchSendSmsResponse;
+import org.ylzl.eden.dynamic.sms.model.batch.BatchSendSmsRequest;
+import org.ylzl.eden.dynamic.sms.model.batch.BatchSendSmsResponse;
 import org.ylzl.eden.dynamic.sms.core.SmsTemplate;
-import org.ylzl.eden.dynamic.sms.model.SmsModel;
-import org.ylzl.eden.dynamic.sms.multi.MultiSendSmsRequest;
-import org.ylzl.eden.dynamic.sms.multi.MultiSendSmsResponse;
-import org.ylzl.eden.dynamic.sms.single.SingleSendSmsRequest;
-import org.ylzl.eden.dynamic.sms.single.SingleSendSmsResponse;
-import org.ylzl.eden.dynamic.sms.template.SendTemplateSmsRequest;
-import org.ylzl.eden.dynamic.sms.template.SendTemplateSmsResponse;
+import org.ylzl.eden.dynamic.sms.model.Sms;
+import org.ylzl.eden.dynamic.sms.model.multi.MultiSendSmsRequest;
+import org.ylzl.eden.dynamic.sms.model.multi.MultiSendSmsResponse;
+import org.ylzl.eden.dynamic.sms.model.single.SingleSendSmsRequest;
+import org.ylzl.eden.dynamic.sms.model.single.SingleSendSmsResponse;
+import org.ylzl.eden.dynamic.sms.model.template.SendTemplateSmsRequest;
+import org.ylzl.eden.dynamic.sms.model.template.SendTemplateSmsResponse;
 import org.ylzl.eden.montnets.sms.config.MontnetsSmsConfig;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
 import org.ylzl.eden.spring.framework.error.util.AssertUtils;
@@ -108,7 +108,7 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 				.build();
 		} catch (Exception e) {
 			log.error("发起梦网单条短信请求失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("SMS-ERROR-500", e.getMessage());
+			throw new ThirdServiceException("SMS-SEND-500", e.getMessage());
 		}
 	}
 
@@ -133,7 +133,7 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 				.build();
 		} catch (Exception e) {
 			log.error("发起梦网相同内容群发请求失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("SMS-ERROR-500", e.getMessage());
+			throw new ThirdServiceException("SMS-SEND-500", e.getMessage());
 		}
 	}
 
@@ -146,9 +146,9 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 	@Override
 	public MultiSendSmsResponse multiSend(MultiSendSmsRequest request) {
 		log.debug("发起梦网个性化内容群发请求，参数：{}", request);
-		Collection<SmsModel> smsModelList = request.getSmsModelList();
-		List<MultiMt> multixMts = Lists.newArrayListWithCapacity(smsModelList.size());
-		for (SmsModel model : smsModelList) {
+		Collection<Sms> smsList = request.getSmsList();
+		List<MultiMt> multixMts = Lists.newArrayListWithCapacity(smsList.size());
+		for (Sms model : smsList) {
 			AssertUtils.notNull(model.getPhoneNumber(), "REQ-ERROR-400", "发送梦网短信的接收号码不能为空");
 			MultiMt multixMt = new MultiMt();
 			multixMt.setMobile(model.getPhoneNumber());
@@ -166,7 +166,7 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 				.build();
 		} catch (Exception e) {
 			log.error("发起梦网个性化内容群发请求失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("SMS-ERROR-500", e.getMessage());
+			throw new ThirdServiceException("SMS-SEND-500", e.getMessage());
 		}
 	}
 
