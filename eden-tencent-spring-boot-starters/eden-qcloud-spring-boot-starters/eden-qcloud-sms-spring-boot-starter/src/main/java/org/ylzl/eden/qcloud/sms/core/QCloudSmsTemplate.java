@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.ylzl.eden.dynamic.sms.model.batch.BatchSendSmsRequest;
 import org.ylzl.eden.dynamic.sms.model.batch.BatchSendSmsResponse;
-import org.ylzl.eden.dynamic.sms.core.SmsTemplate;
+import org.ylzl.eden.dynamic.sms.SmsTemplate;
 import org.ylzl.eden.dynamic.sms.model.multi.MultiSendSmsRequest;
 import org.ylzl.eden.dynamic.sms.model.multi.MultiSendSmsResponse;
 import org.ylzl.eden.dynamic.sms.model.single.SingleSendSmsRequest;
