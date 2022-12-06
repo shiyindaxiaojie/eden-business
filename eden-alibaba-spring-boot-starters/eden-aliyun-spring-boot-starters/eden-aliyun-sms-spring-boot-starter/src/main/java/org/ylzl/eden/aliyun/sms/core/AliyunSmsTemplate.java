@@ -6,15 +6,15 @@ import com.aliyuncs.exceptions.ClientException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
-import org.ylzl.eden.common.sms.batch.BatchSendSmsRequest;
-import org.ylzl.eden.common.sms.batch.BatchSendSmsResponse;
-import org.ylzl.eden.common.sms.core.SmsTemplate;
-import org.ylzl.eden.common.sms.multi.MultiSendSmsRequest;
-import org.ylzl.eden.common.sms.multi.MultiSendSmsResponse;
-import org.ylzl.eden.common.sms.single.SingleSendSmsRequest;
-import org.ylzl.eden.common.sms.single.SingleSendSmsResponse;
-import org.ylzl.eden.common.sms.template.SendTemplateSmsRequest;
-import org.ylzl.eden.common.sms.template.SendTemplateSmsResponse;
+import org.ylzl.eden.dynamic.sms.model.batch.BatchSendSmsRequest;
+import org.ylzl.eden.dynamic.sms.model.batch.BatchSendSmsResponse;
+import org.ylzl.eden.dynamic.sms.SmsTemplate;
+import org.ylzl.eden.dynamic.sms.model.multi.MultiSendSmsRequest;
+import org.ylzl.eden.dynamic.sms.model.multi.MultiSendSmsResponse;
+import org.ylzl.eden.dynamic.sms.model.single.SingleSendSmsRequest;
+import org.ylzl.eden.dynamic.sms.model.single.SingleSendSmsResponse;
+import org.ylzl.eden.dynamic.sms.model.template.SendTemplateSmsRequest;
+import org.ylzl.eden.dynamic.sms.model.template.SendTemplateSmsResponse;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
 import org.ylzl.eden.spring.framework.error.util.AssertUtils;
 
@@ -48,11 +48,11 @@ public class AliyunSmsTemplate implements SmsTemplate {
 			new com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest();
 
 		Collection<String> phoneNumbers = request.getPhoneNumbers();
-		AssertUtils.notNull(phoneNumbers,"BAD-REQUEST-400", "发送阿里云短信的接收号码不能为空");
+		AssertUtils.notNull(phoneNumbers,"REQ-ERROR-400", "发送阿里云短信的接收号码不能为空");
 		sendSmsRequest.setPhoneNumbers(StringUtils.collectionToCommaDelimitedString(phoneNumbers));
 
 		Map<String, String> templateParam = request.getTemplateParam();
-		AssertUtils.notNull(templateParam,"BAD-REQUEST-400", "发送阿里云短信的模板参数不能为空");
+		AssertUtils.notNull(templateParam,"REQ-ERROR-400", "发送阿里云短信的模板参数不能为空");
 		sendSmsRequest.setTemplateParam(JSONUtil.toJsonStr(templateParam));
 		sendSmsRequest.setTemplateCode(request.getTemplateCode());
 
@@ -67,7 +67,7 @@ public class AliyunSmsTemplate implements SmsTemplate {
 				.build();
 		} catch (ClientException e) {
 			log.error("发送阿里云短信失败，异常：{}", e.getMessage(), e);
-			throw new ThirdServiceException("SMS-ERROR-500", e.getMessage());
+			throw new ThirdServiceException("SMS-SEND-500", e.getMessage());
 		}
 	}
 

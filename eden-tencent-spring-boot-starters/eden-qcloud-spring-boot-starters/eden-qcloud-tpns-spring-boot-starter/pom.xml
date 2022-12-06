@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.ylzl</groupId>
 		<artifactId>eden-qcloud-spring-boot-starters</artifactId>
-		<version>2.4.13.20221103</version>
+		<version>2.4.13-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>eden-qcloud-tpns-spring-boot-starter</artifactId>
@@ -19,17 +19,17 @@
 		<!-- 开发框架 -->
 		<dependency>
 			<groupId>org.ylzl</groupId>
-			<artifactId>eden-spring-framework</artifactId>
+			<artifactId>eden-spring-boot</artifactId>
 		</dependency>
 
-		<!-- 开发工具 -->
+		<!-- 开发组件 -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
 
-		<!-- CMQ 组件 -->
+		<!-- CMQ -->
 		<dependency>
 			<groupId>com.qcloud</groupId>
 			<artifactId>qcloud-java-sdk</artifactId>

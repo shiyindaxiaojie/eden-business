@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.ylzl.eden.common.sms.spring.boot.autoconfigure.factory.SmsBeanType;
+import org.ylzl.eden.dynamic.sms.spring.boot.support.SmsBeanNames;
 import org.ylzl.eden.emay.sms.core.EmaySmsTemplate;
 import org.ylzl.eden.emay.sms.spring.boot.env.EmaySmsConvertor;
 import org.ylzl.eden.emay.sms.spring.boot.env.EmaySmsProperties;
@@ -33,7 +33,7 @@ public class EmaySmsAutoCofiguration {
 	private final EmaySmsProperties emaySmsProperties;
 
 	@ConditionalOnMissingBean
-	@Bean(SmsBeanType.EMAY_SMS_TEMPLATE)
+	@Bean(SmsBeanNames.EMAY_SMS_TEMPLATE)
 	public EmaySmsTemplate emaySmsTemplate() {
 		log.info(AUTOWIRED_EMAY_SMS_TEMPLATE);
 		return new EmaySmsTemplate(EmaySmsConvertor.INSTANCE.toConfig(emaySmsProperties));

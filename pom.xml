@@ -7,11 +7,11 @@
 	<parent>
 		<groupId>org.ylzl</groupId>
 		<artifactId>eden-parent</artifactId>
-		<version>2.4.13.20221103</version>
+		<version>2.4.13-SNAPSHOT</version>
 		<relativePath>../eden-architect/eden-components/eden-parent/pom.xml</relativePath>
 	</parent>
 	<artifactId>eden-business</artifactId>
-	<version>2.4.13.20221103</version>
+	<version>2.4.13-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>eden-business</name>
 	<description>商业组件</description>
@@ -83,12 +83,12 @@
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>flatten-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>versions-maven-plugin</artifactId>
 			</plugin>
+			<!--<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+			</plugin>-->
 		</plugins>
 	</build>
 
@@ -107,53 +107,53 @@
 			<dependency>
 				<groupId>org.ylzl</groupId>
 				<artifactId>eden-aliyun-sms-spring-boot-starter</artifactId>
-				<version>2.4.13.20221103</version>
+				<version>2.4.13-SNAPSHOT</version>
 			</dependency>
 
 			<!-- QCloud Spring Boot Starter -->
 			<dependency>
 				<groupId>org.ylzl</groupId>
 				<artifactId>eden-qcloud-spring-boot-starters</artifactId>
-				<version>2.4.13.20221103</version>
+				<version>2.4.13-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>org.ylzl</groupId>
 				<artifactId>eden-qcloud-cmq-spring-boot-starter</artifactId>
-				<version>2.4.13.20221103</version>
+				<version>2.4.13-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>org.ylzl</groupId>
 				<artifactId>eden-qcloud-cos-spring-boot-starter</artifactId>
-				<version>2.4.13.20221103</version>
+				<version>2.4.13-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>org.ylzl</groupId>
 				<artifactId>eden-qcloud-tms-spring-boot-starter</artifactId>
-				<version>2.4.13.20221103</version>
+				<version>2.4.13-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>org.ylzl</groupId>
 				<artifactId>eden-qcloud-tpns-spring-boot-starter</artifactId>
-				<version>2.4.13.20221103</version>
+				<version>2.4.13-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>org.ylzl</groupId>
 				<artifactId>eden-qcloud-vod-spring-boot-starter</artifactId>
-				<version>2.4.13.20221103</version>
+				<version>2.4.13-SNAPSHOT</version>
 			</dependency>
 
 			<!-- Emay Spring Boot Starter -->
 			<dependency>
 				<groupId>org.ylzl</groupId>
 				<artifactId>eden-emay-sms-spring-boot-starter</artifactId>
-				<version>2.4.13.20221103</version>
+				<version>2.4.13-SNAPSHOT</version>
 			</dependency>
 
 			<!-- Montnets Spring Boot Starter -->
 			<dependency>
 				<groupId>org.ylzl</groupId>
 				<artifactId>eden-montnets-sms-spring-boot-starter</artifactId>
-				<version>2.4.13.20221103</version>
+				<version>2.4.13-SNAPSHOT</version>
 			</dependency>
 
 			<!-- 阿里云组件 -->
@@ -260,13 +260,8 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
+			<groupId>org.apache.groovy</groupId>
 			<artifactId>groovy</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-sql</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
