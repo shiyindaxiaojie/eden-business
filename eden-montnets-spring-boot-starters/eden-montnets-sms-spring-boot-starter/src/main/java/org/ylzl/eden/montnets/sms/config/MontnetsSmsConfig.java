@@ -21,7 +21,6 @@ import com.montnets.mwgate.common.ContentEncryptEnum;
 import com.montnets.mwgate.common.PwdEncryptEnum;
 import com.montnets.mwgate.common.SecretKeyEnum;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
@@ -31,12 +30,10 @@ import java.util.List;
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
  * @since 2.4.13
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode
-@SuperBuilder
 @ToString
+@Setter
+@Getter
 public class MontnetsSmsConfig {
 
 	/**
@@ -59,7 +56,10 @@ public class MontnetsSmsConfig {
 	 */
 	private final GlobalParams globalParams = new GlobalParams();
 
-	@Data
+	@EqualsAndHashCode
+	@ToString
+	@Setter
+	@Getter
 	public static class GlobalParams {
 
 		/**

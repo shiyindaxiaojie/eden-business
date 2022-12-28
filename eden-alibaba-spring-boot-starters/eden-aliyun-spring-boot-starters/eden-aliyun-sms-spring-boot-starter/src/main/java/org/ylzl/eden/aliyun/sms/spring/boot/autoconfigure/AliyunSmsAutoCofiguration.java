@@ -26,7 +26,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.ylzl.eden.aliyun.sms.core.AliyunSmsTemplate;
-import org.ylzl.eden.dynamic.sms.spring.boot.support.SmsBeanNames;
+import org.ylzl.eden.spring.boot.bootstrap.constant.Conditions;
 
 /**
  * 阿里云短信自动配置
@@ -34,9 +34,13 @@ import org.ylzl.eden.dynamic.sms.spring.boot.support.SmsBeanNames;
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
  * @since 2.4.13
  */
-@AutoConfigureAfter(SmsAutoConfiguration.class)
-@ConditionalOnProperty(value = "alibaba.cloud.sms.enabled", matchIfMissing = true)
+@ConditionalOnProperty(
+	prefix = "alibaba.cloud.sms",
+	name = Conditions.ENABLED,
+	havingValue = Conditions.TRUE
+)
 @ConditionalOnBean(ISmsService.class)
+@AutoConfigureAfter(SmsAutoConfiguration.class)
 @Slf4j
 @Configuration
 public class AliyunSmsAutoCofiguration {
@@ -44,7 +48,7 @@ public class AliyunSmsAutoCofiguration {
 	private static final String AUTOWIRED_ALIYUN_SMS_TEMPLATE = "Autowired AliyunSmsTemplate";
 
 	@ConditionalOnMissingBean
-	@Bean(SmsBeanNames.ALIYUN_SMS_TEMPLATE)
+	@Bean
 	public AliyunSmsTemplate aliyunSmsTemplate(ISmsService smsService) {
 		log.info(AUTOWIRED_ALIYUN_SMS_TEMPLATE);
 		return new AliyunSmsTemplate(smsService);

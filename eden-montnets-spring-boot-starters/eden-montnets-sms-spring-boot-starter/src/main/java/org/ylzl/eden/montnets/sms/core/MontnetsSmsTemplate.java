@@ -35,6 +35,7 @@ import org.ylzl.eden.dynamic.sms.model.single.SingleSendSmsRequest;
 import org.ylzl.eden.dynamic.sms.model.single.SingleSendSmsResponse;
 import org.ylzl.eden.dynamic.sms.model.template.SendTemplateSmsRequest;
 import org.ylzl.eden.dynamic.sms.model.template.SendTemplateSmsResponse;
+import org.ylzl.eden.dynamic.sms.SmsType;
 import org.ylzl.eden.montnets.sms.config.MontnetsSmsConfig;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
 import org.ylzl.eden.spring.framework.error.util.AssertUtils;
@@ -56,6 +57,19 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 
 	private SmsSendConn smsSendConn;
 
+	/**
+	 * 短信类型
+	 *
+	 * @return 短信类型
+	 */
+	@Override
+	public String smsType() {
+		return SmsType.MONTNETS.name();
+	}
+
+	/**
+	 * 初始化配置
+	 */
 	@Override
 	public void afterPropertiesSet() {
 		populateProperties();
@@ -89,7 +103,7 @@ public class MontnetsSmsTemplate implements SmsTemplate, InitializingBean {
 	 * 初始化账号
 	 */
 	private void initAccountInfo() {
-		AssertUtils.notEmpty(montnetsSmsConfig.getAccountInfo(), "请求梦网的域名不能为空，请联系联系梦网客服进行获取。");
+		AssertUtils.notEmpty(montnetsSmsConfig.getAccountInfo(), "请求梦网的域名不能为空，请联系梦网客服进行获取。");
 		int size = montnetsSmsConfig.getAccountInfo().size();
 		String address1 = montnetsSmsConfig.getAccountInfo().get(0);
 		String address2 = size > 1? montnetsSmsConfig.getAccountInfo().get(1) : null;

@@ -31,6 +31,7 @@ import org.ylzl.eden.dynamic.sms.model.single.SingleSendSmsRequest;
 import org.ylzl.eden.dynamic.sms.model.single.SingleSendSmsResponse;
 import org.ylzl.eden.dynamic.sms.model.template.SendTemplateSmsRequest;
 import org.ylzl.eden.dynamic.sms.model.template.SendTemplateSmsResponse;
+import org.ylzl.eden.dynamic.sms.SmsType;
 import org.ylzl.eden.qcloud.sms.config.QCloudSmsConfig;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
 import org.ylzl.eden.spring.framework.error.util.AssertUtils;
@@ -52,10 +53,23 @@ public class QCloudSmsTemplate implements SmsTemplate, InitializingBean {
 
 	private SmsClient smsClient;
 
+	/**
+	 * 初始化配置
+	 */
 	@Override
-	public void afterPropertiesSet() throws Exception {
+	public void afterPropertiesSet() {
 		Credential credential = new Credential(qcloudSmsConfig.getAccessKey(), qcloudSmsConfig.getSecretKey());
 		smsClient = new SmsClient(credential, qcloudSmsConfig.getRegion());
+	}
+
+	/**
+	 * 短信类型
+	 *
+	 * @return 短信类型
+	 */
+	@Override
+	public String smsType() {
+		return SmsType.QCLOUD.name();
 	}
 
 	/**
@@ -91,7 +105,6 @@ public class QCloudSmsTemplate implements SmsTemplate, InitializingBean {
 			throw new ThirdServiceException("SMS-SEND-500", e.getMessage());
 		}
 	}
-
 
 	/**
 	 * 单条发送

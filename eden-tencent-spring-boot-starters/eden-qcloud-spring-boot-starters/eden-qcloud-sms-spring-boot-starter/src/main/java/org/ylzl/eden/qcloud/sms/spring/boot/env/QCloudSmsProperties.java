@@ -16,8 +16,9 @@
 
 package org.ylzl.eden.qcloud.sms.spring.boot.env;
 
-import lombok.Data;
+import lombok.*;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.ylzl.eden.qcloud.sms.config.QCloudSmsConfig;
 
 /**
  * 腾讯云短信配置
@@ -25,21 +26,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
  * @since 2.4.13
  */
-@Data
+@Setter
+@Getter
 @ConfigurationProperties(prefix = QCloudSmsProperties.PREFIX)
-public class QCloudSmsProperties {
+public class QCloudSmsProperties extends QCloudSmsConfig {
 
 	public static final String PREFIX = "tencent.cloud.sms";
 
-	public static final String ENABLED = PREFIX + ".enabled";
-
 	private boolean enabled;
-
-	private String accessKey;
-
-	private String secretKey;
-
-	private String smsSdkAppId;
-
-	private String region;
 }

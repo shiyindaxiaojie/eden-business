@@ -25,10 +25,9 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.ylzl.eden.dynamic.sms.spring.boot.support.SmsBeanNames;
 import org.ylzl.eden.montnets.sms.core.MontnetsSmsTemplate;
-import org.ylzl.eden.montnets.sms.spring.boot.env.MontnetsSmsConvertor;
 import org.ylzl.eden.montnets.sms.spring.boot.env.MontnetsSmsProperties;
+import org.ylzl.eden.spring.boot.bootstrap.constant.Conditions;
 
 /**
  * 梦网短信自动配置
@@ -36,7 +35,12 @@ import org.ylzl.eden.montnets.sms.spring.boot.env.MontnetsSmsProperties;
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
  * @since 2.4.13
  */
-@ConditionalOnProperty(value = MontnetsSmsProperties.ENABLED, matchIfMissing = true)
+@ConditionalOnProperty(
+	prefix = MontnetsSmsProperties.PREFIX,
+	name = Conditions.ENABLED,
+	havingValue = Conditions.TRUE,
+	matchIfMissing = true
+)
 @ConditionalOnBean(SmsSendConn.class)
 @EnableConfigurationProperties(MontnetsSmsProperties.class)
 @RequiredArgsConstructor
@@ -49,9 +53,9 @@ public class MontnetsSmsAutoCofiguration {
 	private final MontnetsSmsProperties montnetsSmsProperties;
 
 	@ConditionalOnMissingBean
-	@Bean(SmsBeanNames.MONTNETS_SMS_TEMPLATE)
+	@Bean
 	public MontnetsSmsTemplate montnetsSmsTemplate() {
 		log.info(AUTOWIRED_MONTNETS_SMS_TEMPLATE);
-		return new MontnetsSmsTemplate(MontnetsSmsConvertor.INSTANCE.toConfig(montnetsSmsProperties));
+		return new MontnetsSmsTemplate(montnetsSmsProperties);
 	}
 }
