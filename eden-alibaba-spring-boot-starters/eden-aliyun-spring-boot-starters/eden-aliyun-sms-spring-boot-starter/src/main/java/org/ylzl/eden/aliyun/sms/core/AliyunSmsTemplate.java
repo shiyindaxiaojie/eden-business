@@ -16,13 +16,13 @@
 
 package org.ylzl.eden.aliyun.sms.core;
 
-import cn.hutool.json.JSONUtil;
 import com.alibaba.cloud.spring.boot.sms.ISmsService;
 import com.aliyuncs.exceptions.ClientException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.ylzl.eden.dynamic.sms.SmsTemplate;
+import org.ylzl.eden.dynamic.sms.SmsType;
 import org.ylzl.eden.dynamic.sms.model.batch.BatchSendSmsRequest;
 import org.ylzl.eden.dynamic.sms.model.batch.BatchSendSmsResponse;
 import org.ylzl.eden.dynamic.sms.model.multi.MultiSendSmsRequest;
@@ -31,9 +31,9 @@ import org.ylzl.eden.dynamic.sms.model.single.SingleSendSmsRequest;
 import org.ylzl.eden.dynamic.sms.model.single.SingleSendSmsResponse;
 import org.ylzl.eden.dynamic.sms.model.template.SendTemplateSmsRequest;
 import org.ylzl.eden.dynamic.sms.model.template.SendTemplateSmsResponse;
-import org.ylzl.eden.dynamic.sms.SmsType;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
 import org.ylzl.eden.spring.framework.error.util.AssertUtils;
+import org.ylzl.eden.spring.framework.json.support.JSONHelper;
 
 import java.util.Collection;
 import java.util.Map;
@@ -80,7 +80,7 @@ public class AliyunSmsTemplate implements SmsTemplate {
 
 		Map<String, String> templateParam = request.getTemplateParam();
 		AssertUtils.notNull(templateParam,"REQ-ERROR-400", "发送阿里云短信的模板参数不能为空");
-		sendSmsRequest.setTemplateParam(JSONUtil.toJsonStr(templateParam));
+		sendSmsRequest.setTemplateParam(JSONHelper.json().toJSONString(templateParam));
 		sendSmsRequest.setTemplateCode(request.getTemplateCode());
 
 		sendSmsRequest.setSignName(request.getSignName());
