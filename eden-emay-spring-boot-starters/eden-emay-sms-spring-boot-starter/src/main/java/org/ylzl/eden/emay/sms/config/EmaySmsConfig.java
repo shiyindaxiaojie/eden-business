@@ -16,8 +16,10 @@
 
 package org.ylzl.eden.emay.sms.config;
 
-import lombok.*;
-import lombok.experimental.SuperBuilder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * 亿美短信配置
@@ -25,12 +27,10 @@ import lombok.experimental.SuperBuilder;
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
  * @since 2.4.13
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode
-@SuperBuilder
 @ToString
+@Setter
+@Getter
 public class EmaySmsConfig {
 
 	/**

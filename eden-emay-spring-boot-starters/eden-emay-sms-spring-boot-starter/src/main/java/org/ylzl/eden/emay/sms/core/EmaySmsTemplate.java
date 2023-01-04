@@ -38,6 +38,7 @@ import org.ylzl.eden.dynamic.sms.model.single.SingleSendSmsRequest;
 import org.ylzl.eden.dynamic.sms.model.single.SingleSendSmsResponse;
 import org.ylzl.eden.dynamic.sms.model.template.SendTemplateSmsRequest;
 import org.ylzl.eden.dynamic.sms.model.template.SendTemplateSmsResponse;
+import org.ylzl.eden.dynamic.sms.SmsType;
 import org.ylzl.eden.emay.sms.config.EmaySmsConfig;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
 
@@ -56,6 +57,16 @@ public class EmaySmsTemplate implements SmsTemplate, InitializingBean {
 	private final EmaySmsConfig emaySmsConfig;
 
 	private SmsSDKClient smsSDKClient;
+
+	/**
+	 * 短信类型
+	 *
+	 * @return 短信类型
+	 */
+	@Override
+	public String smsType() {
+		return SmsType.EMAY.name();
+	}
 
 	@Override
 	public void afterPropertiesSet() throws Exception {

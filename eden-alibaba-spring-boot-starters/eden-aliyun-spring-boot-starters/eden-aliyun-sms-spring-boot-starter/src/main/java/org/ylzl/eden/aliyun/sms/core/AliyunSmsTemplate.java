@@ -22,15 +22,16 @@ import com.aliyuncs.exceptions.ClientException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
+import org.ylzl.eden.dynamic.sms.SmsTemplate;
 import org.ylzl.eden.dynamic.sms.model.batch.BatchSendSmsRequest;
 import org.ylzl.eden.dynamic.sms.model.batch.BatchSendSmsResponse;
-import org.ylzl.eden.dynamic.sms.SmsTemplate;
 import org.ylzl.eden.dynamic.sms.model.multi.MultiSendSmsRequest;
 import org.ylzl.eden.dynamic.sms.model.multi.MultiSendSmsResponse;
 import org.ylzl.eden.dynamic.sms.model.single.SingleSendSmsRequest;
 import org.ylzl.eden.dynamic.sms.model.single.SingleSendSmsResponse;
 import org.ylzl.eden.dynamic.sms.model.template.SendTemplateSmsRequest;
 import org.ylzl.eden.dynamic.sms.model.template.SendTemplateSmsResponse;
+import org.ylzl.eden.dynamic.sms.SmsType;
 import org.ylzl.eden.spring.framework.error.ThirdServiceException;
 import org.ylzl.eden.spring.framework.error.util.AssertUtils;
 
@@ -50,6 +51,16 @@ public class AliyunSmsTemplate implements SmsTemplate {
 	private static final String OK = "ok";
 
 	private final ISmsService smsService;
+
+	/**
+	 * 短信类型
+	 *
+	 * @return 短信类型
+	 */
+	@Override
+	public String smsType() {
+		return SmsType.ALIYUN.name();
+	}
 
 	/**
 	 * 模板发送

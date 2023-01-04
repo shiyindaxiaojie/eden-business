@@ -25,10 +25,9 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.ylzl.eden.dynamic.sms.spring.boot.support.SmsBeanNames;
 import org.ylzl.eden.qcloud.sms.core.QCloudSmsTemplate;
-import org.ylzl.eden.qcloud.sms.spring.boot.env.QCloudSmsConvertor;
 import org.ylzl.eden.qcloud.sms.spring.boot.env.QCloudSmsProperties;
+import org.ylzl.eden.spring.boot.bootstrap.constant.Conditions;
 
 /**
  * 腾讯云短信自动配置
@@ -36,7 +35,12 @@ import org.ylzl.eden.qcloud.sms.spring.boot.env.QCloudSmsProperties;
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
  * @since 2.4.13
  */
-@ConditionalOnProperty(value = QCloudSmsProperties.ENABLED, havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(
+	prefix = QCloudSmsProperties.PREFIX,
+	name = Conditions.ENABLED,
+	havingValue = Conditions.TRUE,
+	matchIfMissing = true
+)
 @ConditionalOnClass(SmsClient.class)
 @EnableConfigurationProperties(QCloudSmsProperties.class)
 @RequiredArgsConstructor
@@ -49,9 +53,9 @@ public class QCloudSmsAutoCofiguration {
 	private final QCloudSmsProperties qcloudSmsProperties;
 
 	@ConditionalOnMissingBean
-	@Bean(SmsBeanNames.QCLOUD_SMS_TEMPLATE)
+	@Bean
 	public QCloudSmsTemplate qcloudSmsTemplate() {
 		log.info(AUTOWIRED_QCLOUD_SMS_TEMPLATE);
-		return new QCloudSmsTemplate(QCloudSmsConvertor.INSTANCE.toConfig(qcloudSmsProperties));
+		return new QCloudSmsTemplate(qcloudSmsProperties);
 	}
 }
