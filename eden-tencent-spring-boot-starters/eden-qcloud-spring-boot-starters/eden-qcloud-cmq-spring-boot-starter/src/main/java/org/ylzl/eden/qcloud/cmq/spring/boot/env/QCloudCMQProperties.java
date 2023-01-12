@@ -26,8 +26,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @since 2.4.13
  */
 @Data
-@ConfigurationProperties(prefix = "tencent.cloud.cmq")
+@ConfigurationProperties(prefix = QCloudCMQProperties.PREFIX)
 public class QCloudCMQProperties {
+
+	public static final String PREFIX = "tencent.cloud.cmq";
 
 	private boolean enabled;
 

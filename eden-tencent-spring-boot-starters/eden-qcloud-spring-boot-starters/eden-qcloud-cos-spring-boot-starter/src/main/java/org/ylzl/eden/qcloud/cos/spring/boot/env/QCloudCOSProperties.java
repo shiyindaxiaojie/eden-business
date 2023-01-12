@@ -26,8 +26,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @since 2.4.13
  */
 @Data
-@ConfigurationProperties(prefix = "tencent.cloud.cos")
+@ConfigurationProperties(prefix = QCloudCOSProperties.PREFIX)
 public class QCloudCOSProperties {
+
+	public static final String PREFIX = "tencent.cloud.cos";
 
 	private boolean enabled;
 

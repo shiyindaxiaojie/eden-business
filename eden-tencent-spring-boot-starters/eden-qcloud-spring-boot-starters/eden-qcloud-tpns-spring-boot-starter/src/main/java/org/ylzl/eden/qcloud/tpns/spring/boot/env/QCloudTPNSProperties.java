@@ -26,8 +26,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @since 2.4.13
  */
 @Data
-@ConfigurationProperties(prefix = "tencent.cloud.tpns")
+@ConfigurationProperties(prefix = QCloudTPNSProperties.PREFIX)
 public class QCloudTPNSProperties {
+
+	public static final String PREFIX = "tencent.cloud.tpns";
 
 	private boolean enabled;
 

@@ -19,12 +19,14 @@ package org.ylzl.eden.qcloud.sms.spring.boot.autoconfigure;
 import com.tencentcloudapi.sms.v20210111.SmsClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Role;
 import org.ylzl.eden.qcloud.sms.core.QCloudSmsTemplate;
 import org.ylzl.eden.qcloud.sms.spring.boot.env.QCloudSmsProperties;
 import org.ylzl.eden.spring.boot.bootstrap.constant.Conditions;
@@ -45,7 +47,8 @@ import org.ylzl.eden.spring.boot.bootstrap.constant.Conditions;
 @EnableConfigurationProperties(QCloudSmsProperties.class)
 @RequiredArgsConstructor
 @Slf4j
-@Configuration
+@Role(BeanDefinition.ROLE_INFRASTRUCTURE)
+@Configuration(proxyBeanMethods = false)
 public class QCloudSmsAutoCofiguration {
 
 	private static final String AUTOWIRED_QCLOUD_SMS_TEMPLATE = "Autowired QcloudSmsTemplate";
