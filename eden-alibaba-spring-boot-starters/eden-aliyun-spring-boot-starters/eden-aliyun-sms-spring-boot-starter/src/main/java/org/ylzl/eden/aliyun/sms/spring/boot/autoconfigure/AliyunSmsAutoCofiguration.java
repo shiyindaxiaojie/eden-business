@@ -19,12 +19,14 @@ package org.ylzl.eden.aliyun.sms.spring.boot.autoconfigure;
 import com.alibaba.cloud.spring.boot.sms.ISmsService;
 import com.alibaba.cloud.spring.boot.sms.autoconfigure.SmsAutoConfiguration;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Role;
 import org.ylzl.eden.aliyun.sms.core.AliyunSmsTemplate;
 import org.ylzl.eden.spring.boot.bootstrap.constant.Conditions;
 
@@ -42,7 +44,8 @@ import org.ylzl.eden.spring.boot.bootstrap.constant.Conditions;
 @ConditionalOnBean(ISmsService.class)
 @AutoConfigureAfter(SmsAutoConfiguration.class)
 @Slf4j
-@Configuration
+@Role(BeanDefinition.ROLE_INFRASTRUCTURE)
+@Configuration(proxyBeanMethods = false)
 public class AliyunSmsAutoCofiguration {
 
 	private static final String AUTOWIRED_ALIYUN_SMS_TEMPLATE = "Autowired AliyunSmsTemplate";

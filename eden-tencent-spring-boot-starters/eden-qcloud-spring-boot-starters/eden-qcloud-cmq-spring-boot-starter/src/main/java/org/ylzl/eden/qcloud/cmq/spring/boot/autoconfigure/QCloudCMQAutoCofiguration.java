@@ -17,10 +17,13 @@
 package org.ylzl.eden.qcloud.cmq.spring.boot.autoconfigure;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Role;
 import org.ylzl.eden.qcloud.cmq.spring.boot.env.QCloudCMQProperties;
+import org.ylzl.eden.spring.boot.bootstrap.constant.Conditions;
 
 /**
  * 腾讯云CMQ 自动配置
@@ -28,10 +31,16 @@ import org.ylzl.eden.qcloud.cmq.spring.boot.env.QCloudCMQProperties;
  * @author <a href="mailto:shiyindaxiaojie@gmail.com">gyl</a>
  * @since 2.4.13
  */
-@ConditionalOnProperty(value = "tencent.cloud.cmq.enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(
+	prefix = QCloudCMQProperties.PREFIX,
+	name = Conditions.ENABLED,
+	havingValue = Conditions.TRUE,
+	matchIfMissing = true
+)
 @EnableConfigurationProperties(QCloudCMQProperties.class)
 @Slf4j
-@Configuration
+@Role(BeanDefinition.ROLE_INFRASTRUCTURE)
+@Configuration(proxyBeanMethods = false)
 public class QCloudCMQAutoCofiguration {
 
 	private final QCloudCMQProperties qcloudCmqProperties;

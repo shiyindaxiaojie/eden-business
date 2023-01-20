@@ -26,8 +26,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @since 2021-06-17
  **/
 @Data
-@ConfigurationProperties(prefix = "tencent.cloud.vod")
+@ConfigurationProperties(prefix = QCloudVODProperties.PREFIX)
 public class QCloudVODProperties {
+
+	public static final String PREFIX = "tencent.cloud.vod";
 
 	private boolean enabled;
 

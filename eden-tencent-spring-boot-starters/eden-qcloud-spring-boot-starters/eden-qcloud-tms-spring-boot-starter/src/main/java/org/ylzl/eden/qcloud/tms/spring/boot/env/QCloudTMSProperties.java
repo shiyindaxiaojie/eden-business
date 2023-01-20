@@ -26,8 +26,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @since 2.4.13
  */
 @Data
-@ConfigurationProperties(prefix = "tencent.cloud.tms")
+@ConfigurationProperties(prefix = QCloudTMSProperties.PREFIX)
 public class QCloudTMSProperties {
+
+	public static final String PREFIX = "tencent.cloud.tms";
 
 	private boolean enabled;
 

@@ -19,12 +19,14 @@ package org.ylzl.eden.montnets.sms.spring.boot.autoconfigure;
 import com.montnets.mwgate.smsutil.SmsSendConn;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Role;
 import org.ylzl.eden.montnets.sms.core.MontnetsSmsTemplate;
 import org.ylzl.eden.montnets.sms.spring.boot.env.MontnetsSmsProperties;
 import org.ylzl.eden.spring.boot.bootstrap.constant.Conditions;
@@ -45,7 +47,8 @@ import org.ylzl.eden.spring.boot.bootstrap.constant.Conditions;
 @EnableConfigurationProperties(MontnetsSmsProperties.class)
 @RequiredArgsConstructor
 @Slf4j
-@Configuration
+@Role(BeanDefinition.ROLE_INFRASTRUCTURE)
+@Configuration(proxyBeanMethods = false)
 public class MontnetsSmsAutoCofiguration {
 
 	private static final String AUTOWIRED_MONTNETS_SMS_TEMPLATE = "Autowired MontnetsSmsTemplate";
