@@ -7,7 +7,7 @@ plugins {
 }
 
 dependencies {
-    api 'org.ylzl:eden-spring-boot:2.4.13-SNAPSHOT'
+    api 'org.ylzl:eden-spring-boot:0.0.1-SNAPSHOT'
     api 'org.projectlombok:lombok:1.18.18'
     api 'com.qcloud:cos_api:5.6.38'
 }

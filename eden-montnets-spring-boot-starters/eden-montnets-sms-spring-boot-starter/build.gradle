@@ -8,7 +8,7 @@ plugins {
 
 dependencies {
     api 'org.projectlombok:lombok:1.18.18'
-    api 'org.ylzl:eden-dynamic-sms-spring-boot-starter:2.4.13-SNAPSHOT'
+    api 'org.ylzl:eden-dynamic-sms-spring-boot-starter:0.0.1-SNAPSHOT'
     api 'org.apache.httpcomponents:httpcore:4.4.14'
     api 'org.apache.httpcomponents:httpclient:4.5.13'
     api 'commons-codec:commons-codec:1.10'

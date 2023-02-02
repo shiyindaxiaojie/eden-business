@@ -54,7 +54,7 @@ Eden* Business 致力于提供企业开发的一站式解决方案。此项目�
 <parent>
     <groupId>org.ylzl</groupId>
     <artifactId>eden-parent</artifactId>
-    <version>2.4.13-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <relativePath/>
 </parent>
 ```

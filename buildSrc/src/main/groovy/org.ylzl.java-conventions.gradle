@@ -22,7 +22,7 @@ dependencies {
 }
 
 group = 'org.ylzl'
-version = '2.4.13-SNAPSHOT'
+version = '0.0.1-SNAPSHOT'
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 publishing {
