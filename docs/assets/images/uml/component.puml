@@ -18,9 +18,9 @@
 [eden-qcloud-spring-boot-starters] --> [eden-tencent-spring-boot-starters]
 [eden-wechat-spring-boot-starters] --> [eden-tencent-spring-boot-starters]
 
-[eden-montnets-spring-boot-starters] --> [eden-business]
+[eden-montnets-spring-boot-starters] -u-> [eden-business]
 
-[eden-emay-spring-boot-starters] --> [eden-business]
+[eden-emay-spring-boot-starters] -u-> [eden-business]
 
 skinparam component {
  	backgroundColor<<阿里巴巴组件>> SkyBlue
