@@ -54,7 +54,7 @@ Eden* Business 致力于提供企业开发的一站式解决方案。此项目�
 
 ```xml
 <parent>
-    <groupId>org.ylzl</groupId>
+    <groupId>io.github.shiyindaxiaojie</groupId>
     <artifactId>eden-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <relativePath/>
@@ -65,7 +65,7 @@ Eden* Business 致力于提供企业开发的一站式解决方案。此项目�
 
 ```xml
 <dependency>
-    <groupId>org.ylzl</groupId>
+    <groupId>io.github.shiyindaxiaojie</groupId>
     <artifactId>eden-aliyun-sms-spring-boot-starter</artifactId>
 </dependency>
 ```

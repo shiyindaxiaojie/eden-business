@@ -21,10 +21,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.ylzl</groupId>
+		<groupId>io.github.shiyindaxiaojie</groupId>
 		<artifactId>eden-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../eden-architect/eden-components/eden-parent/pom.xml</relativePath>
+		<relativePath/>
 	</parent>
 	<artifactId>eden-business</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -38,6 +38,18 @@
 		<module>eden-montnets-spring-boot-starters</module>
 		<module>eden-tencent-spring-boot-starters</module>
 	</modules>
+
+	<developers>
+		<developer>
+			<id>sion</id>
+			<name>梦想歌</name>
+			<email>shiyindaxiaojie@gmail.com</email>
+			<roles>
+				<role>Developer</role>
+				<role>Architect</role>
+			</roles>
+		</developer>
+	</developers>
 
 	<licenses>
 		<license>
@@ -59,17 +71,28 @@
 		<url>https://github.com/shiyindaxiaojie/eden-bussiness/issues</url>
 	</issueManagement>
 
-	<developers>
-		<developer>
-			<id>sion</id>
-			<name>梦想歌</name>
-			<email>shiyindaxiaojie@gmail.com</email>
-			<roles>
-				<role>Developer</role>
-				<role>Architect</role>
-			</roles>
-		</developer>
-	</developers>
+	<repositories>
+		<repository>
+			<id>sonatype-ossrh-releases</id>
+			<url>https://s01.oss.sonatype.org/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>sonatype-ossrh-snapshots</id>
+			<url>https://s01.oss.sonatype.org/content/groups/staging/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 	<properties>
 		<!-- 阿里云组件 -->
@@ -121,53 +144,53 @@
 
 			<!-- Aliyun Spring Boot Starter -->
 			<dependency>
-				<groupId>org.ylzl</groupId>
+				<groupId>io.github.shiyindaxiaojie</groupId>
 				<artifactId>eden-aliyun-sms-spring-boot-starter</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 
 			<!-- QCloud Spring Boot Starter -->
 			<dependency>
-				<groupId>org.ylzl</groupId>
+				<groupId>io.github.shiyindaxiaojie</groupId>
 				<artifactId>eden-qcloud-spring-boot-starters</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
-				<groupId>org.ylzl</groupId>
+				<groupId>io.github.shiyindaxiaojie</groupId>
 				<artifactId>eden-qcloud-cmq-spring-boot-starter</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
-				<groupId>org.ylzl</groupId>
+				<groupId>io.github.shiyindaxiaojie</groupId>
 				<artifactId>eden-qcloud-cos-spring-boot-starter</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
-				<groupId>org.ylzl</groupId>
+				<groupId>io.github.shiyindaxiaojie</groupId>
 				<artifactId>eden-qcloud-tms-spring-boot-starter</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
-				<groupId>org.ylzl</groupId>
+				<groupId>io.github.shiyindaxiaojie</groupId>
 				<artifactId>eden-qcloud-tpns-spring-boot-starter</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
-				<groupId>org.ylzl</groupId>
+				<groupId>io.github.shiyindaxiaojie</groupId>
 				<artifactId>eden-qcloud-vod-spring-boot-starter</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 
 			<!-- Emay Spring Boot Starter -->
 			<dependency>
-				<groupId>org.ylzl</groupId>
+				<groupId>io.github.shiyindaxiaojie</groupId>
 				<artifactId>eden-emay-sms-spring-boot-starter</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 
 			<!-- Montnets Spring Boot Starter -->
 			<dependency>
-				<groupId>org.ylzl</groupId>
+				<groupId>io.github.shiyindaxiaojie</groupId>
 				<artifactId>eden-montnets-sms-spring-boot-starter</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
