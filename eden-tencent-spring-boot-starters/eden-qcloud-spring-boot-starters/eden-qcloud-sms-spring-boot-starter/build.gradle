@@ -8,7 +8,7 @@ plugins {
 
 dependencies {
     api 'org.projectlombok:lombok:1.18.18'
-    api 'org.ylzl:eden-common-sms-spring-boot-starter:0.0.1-SNAPSHOT'
+    api 'org.ylzl:eden-dynamic-sms-spring-boot-starter:0.0.1-SNAPSHOT'
     api 'com.tencentcloudapi:tencentcloud-sdk-java:3.1.373'
 }
 
